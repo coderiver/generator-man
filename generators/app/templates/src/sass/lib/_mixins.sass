@@ -1,0 +1,273 @@
+@import media
+// less than X
+=r($width)
+	@media only screen and (max-width: $width+ "px")
+		@content
+
+// more than X
+=rm($width)
+	@media only screen and (min-width: $width+ "px")
+		@content
+
+// height, less than X
+=rh($height)
+	@media only screen and (max-height: $height + "px")
+		@content
+
+=clr
+	&:after
+		content: " "
+		display: table
+		clear: both
+	*zoom: 1
+
+=g($color1, $color2)
+	background-color: $color1
+	background-image: linear-gradient($color1, $color2)
+
+=gh($color1, $color2)
+	background-color: $color1
+	background-image: linear-gradient(to right, $color1, $color2)
+
+// easy vertical-align at center
+=vcenter
+	position: absolute
+	top: 50%
+	left: 50%
+	+translate(-50%,-50%)
+
+// bulletproof vertical-align
+=vertical
+	text-align: center
+	font-size: 0
+	&:before
+		content: ""
+		display: inline-block
+		vertical-align: middle
+		width: 0
+		height: 100%
+		
+// justify, set on parent
+=justify
+	text-align: justify
+	line-height: 0
+	font-size: 0
+	text-justify: newspaper
+	zoom: 1
+	text-align-last: justify
+	&:after
+		content: ""
+		display: inline-block
+		width: 100%
+		height: 0px
+		visibility: hidden
+		overflow: hidden
+		
+// fast font-family
+=font($alias, $name)
+	@font-face
+		font-family: $alias
+		src: url("fonts/" + $name + ".eot")
+		src: url("fonts/" + $name + ".eot?#iefix") format("embedded-opentype"), url("fonts/" + $name + ".woff2") format("woff2"), url("fonts/" + $name + ".woff") format("woff"), url("fonts/" + $name + ".ttf") format("truetype")
+		font-weight: normal
+		font-style: normal
+// usage:
+//+font(black, cytiapro-black-webfont)
+
+=placeholder
+	&::placeholder
+		@content
+
+=text-overflow
+	overflow: hidden
+	-ms-text-overflow: ellipsis
+	text-overflow: ellipsis
+	white-space: nowrap
+	
+=ie
+	*display: inline
+	*zoom: 1
+	
+=box
+	box-sizing: border-box
+	
+%pseudo
+	position: relative
+	&:before,&:after
+		content: ' '
+		position: absolute
+		top: 0
+		left: 0
+=pseudo
+	@extend %pseudo
+
+=coverdiv
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+
+=cover
+	background-repeat: no-repeat
+	background-size: cover
+	background-position: 50% 50%
+
+=bg-size($width: 100%, $height: 100%)
+	background-size: $width $height
+
+// retina, also available as +hdpi
+=retina
+	@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)
+		@content
+
+=tr($what)
+	transition: $what
+
+=hide-text
+	font: 0/0 a
+	text-shadow: none
+	color: transparent
+
+=hidetext
+	+hide-text
+
+=gray
+	filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale")
+	// Firefox 10+
+	filter: gray
+	// IE6-9
+	-webkit-filter: grayscale(100%)
+	// Chrome 19+ & Safari 6+
+	filter: progid:DXImageTransform.Microsoft.BasicImage(grayScale=1)
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(grayScale=1)"
+
+=gray-half
+	filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='saturate' values='0.5'/></filter></svg>#grayscale")
+	// Firefox 10+
+	filter: gray alpha(opacity = 50)
+	// IE6-9
+	-webkit-filter: grayscale(50%)
+	// Chrome 19+ & Safari 6+
+
+=gray-zero
+	filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0'/></filter></svg>#grayscale")
+	-webkit-filter: grayscale(0%)
+
+=unselectable
+	-webkit-touch-callout: none
+	-webkit-user-select: none
+	-khtml-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+
+=nosel
+	+unselectable
+
+=prevent-text
+	-ms-word-break: break-all
+	word-break: break-all
+	word-break: break-word
+	-webkit-hyphens: auto
+	-moz-hyphens: auto
+	hyphens: auto
+
+=font-smoothing($val: antialiased)
+	-webkit-font-smoothing: $val
+	-moz-font-smoothing: $val
+	-ms-font-smoothing: $val
+	-o-font-smoothing: $val
+
+=selection
+	& ::selection
+		@content
+	& ::-moz-selection
+		@content
+=sel
+	+selection
+
+=gpu
+	+transform(translate3d(0, 0, 0))
+
+=smooth-triangle
+	transform: rotate(0.05deg)
+
+=scrollbar
+	&::-webkit-scrollbar
+		@content
+
+=scrollbar-track
+	&::-webkit-scrollbar-track
+		@content
+
+=scrollbar-thumb
+	&::-webkit-scrollbar-thumb
+		@content
+
+=scrollbar-track-piece
+	&::-webkit-scrollbar-track-piece
+		@content
+
+//triangle
+=arr($width, $height, $bg, $direction)
+	width: 0px
+	height: 0px
+	border-style: solid
+	@if $direction == t
+		border-width: 0 $width / 2 + px $height + px $width / 2 + px
+		border-color: transparent transparent $bg transparent
+	@if $direction == r
+		border-width: $height / 2 + px 0 $height / 2 + px $width + px
+		border-color: transparent transparent transparent $bg
+	@if $direction == b
+		border-width: $height + px $width / 2 + px 0 $width / 2 + px
+		border-color: $bg transparent transparent transparent
+	@if $direction == l
+		border-width: $height / 2 + px $width + px $height / 2 + px 0
+		border-color: transparent $bg transparent transparent
+	@if $direction == tl
+		border-width: $height + px $width + px 0 0
+		border-color: $bg transparent transparent transparent
+	@if $direction == tr
+		border-width: 0 $width + px $height + px 0
+		border-color: transparent $bg transparent transparent
+	@if $direction == br
+		border-width: 0 0 $height + px $width + px
+		border-color: transparent transparent $bg transparent
+	@if $direction == bl
+		border-width: $height + px 0 0 $width + px
+		border-color: transparent transparent transparent $bg
+// example
+// +arr(500,50, #000, l)
+// +arr(500,50, #000, bl)
+
+=rotate($var)
+	transform: rotate($var+deg)
+
+=blur($var)
+	-webkit-filter: blur($var)
+	filter: blur($var)
+	
+=scale($var)
+	transform: scale($var)
+
+=counter($var, $sep)
+	counter-reset: list + $var
+	> li
+		&:before
+			content: counter(list + $var) $sep
+			counter-increment: list + $var
+
+@function makelongshadow($color)
+	$val: 0px 0px $color
+	@for $i from 1 through 200
+		$val: #{$val}, #{$i}px #{$i}px #{$color}
+	@return $val
+
+=longshadow($color)
+	text-shadow: makelongshadow($color)
+	
+=fs($sizeValue: 16)
+	font-size: $sizeValue + px
+	font-size: $sizeValue / 10 + rem

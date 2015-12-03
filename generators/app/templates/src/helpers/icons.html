@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Iconfont Preview</title>
+  <style type="text/css" media="all">
+  	body{
+  		font-family: Helvetica, Arial,sans-serif;
+  		padding: 30px;
+  		margin: 0;
+  	}
+    @font-face {
+      font-family: "<%= fontName %>";
+      src: url('css/fonts/<%= fontName %>.eot');
+      src: url('css/fonts/<%= fontName %>.eot?#iefix') format('eot'),
+        url('css/fonts/<%= fontName %>.woff2') format('woff2'),
+        url('css/fonts/<%= fontName %>.woff') format('woff'),
+        url('css/fonts/<%= fontName %>.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    h1 {
+      text-align: left;
+      font-weight: normal;
+      font-size: 33px;
+      font-weight: 100;
+      margin-bottom: 45px;
+    }
+    .size{
+    	margin-left: 30px;
+    	color: #888;
+    }
+    .size input{
+    	width: 300px;
+    }
+    .icons-list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      font-size: 0;
+      text-align: center;
+      -webkit-columns: 4;
+    }
+    .icon-box {
+      display: inline-block;
+      vertical-align: middle;
+      min-width: 200px;
+      min-height: 200px;
+      border-radius: 5px;
+    }
+    .icon-container {
+      min-height: 100px;
+      text-align: center;
+      font-size: 60px;
+      text-align: left;
+      padding-top: 10px;
+    }
+    .icon-box input {
+      display: inline-block;
+      vertical-align: top;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 12px;
+      border-radius: 5px;
+      height: 30px;
+      padding: 0;
+      text-align: center;
+      border: 1px solid #CCC;
+      -webkit-appearance: none;
+    }
+    .icon-box .icon-class-name {
+      width: 70%;
+    }
+    .icon-box .icon-unicode {
+      width: 30%;
+      font-size: 10px;
+      color: #ccc;
+      border: none;
+      text-align: left;
+      padding-left: 10px;
+    }
+    .<%= className %> {
+      font-family: "<%= fontName %>";
+      display: inline-block;
+      vertical-align: middle;
+      font-style: normal;
+      font-weight: normal;
+      text-rendering: auto;
+      speak: none;
+      min-width: 1em;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    <% _.forEach(glyphs, function(glyph) { %>
+    .<%= className %>-<%= glyph.name %>:before {
+      content: "\<%= glyph.unicode[0].charCodeAt(0).toString(16).toUpperCase() %>";
+    }<% }); %>
+  </style>
+</head>
+<body>
+  <h1>Icons: <span id="count"></span>
+	<label class="size">
+	  Icon size <span id="change-value">60</span>
+	  <input type="range" id="change-size" min="5" max="100" value="60">
+	</label>
+  </h1>
+
+  <ul class="icons-list">
+    <% _.forEach(glyphs, function(glyph) { %>
+    <li class="icon-box">
+      <input class="icon-class-name autoselect" type="text" value=".<%= className %>-<%= glyph.name %>" readonly>
+      <input class="icon-unicode autoselect" type="text" value="\<%= glyph.unicode[0].charCodeAt(0).toString(16).toUpperCase() %>" readonly>
+      <div class="icon-container">
+        <i class="<%= className %> <%= className %>-<%= glyph.name %>"></i>
+      </div>
+    </li>
+    <% }) %>
+  </ul>
+
+  <script>
+    var change = document.getElementById('change-size');
+    var changevalue = document.getElementById('change-value');
+    var count = document.getElementById('count');
+    var autoselect = document.getElementsByClassName('autoselect');
+    var icons = document.getElementsByClassName('<%= className %>');
+    Array.prototype.forEach.call(autoselect, function(el) {
+      el.onclick = function() {
+        this.focus();
+        this.select();
+      };
+    });
+    change.onchange = function() {
+      val = this.value;
+      changevalue.innerHTML = val;
+      Array.prototype.forEach.call(icons, function(el) {
+        el.style.fontSize = val + 'px';
+      });
+    }
+
+    count.innerHTML = icons.length;
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "Coderiver-Project",
+  "version": "0.2.0",
+  "description": "Riverco.de gulp template",
+  "author": "Coderiver <html@coderiver.com.ua>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coderiver/gulp"
+  },
+  "devDependencies": {
+    "autoprefixer": "~6.0.3",
+    "browser-sync": "~2.9.3",
+    "css-mqpacker": "^4.0.0",
+    "gulp": "~3.9.0",
+    "gulp-consolidate": "^0.1.2",
+    "gulp-copy": "0.0.2",
+    "gulp-iconfont": "^5.0.0",
+    "gulp-include": "^2.0.3",
+    "gulp-notify": "^2.2.0",
+    "gulp-postcss": "~6.0.0",
+    "gulp-ruby-sass": "~2.0.3",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp.spritesmith": "^4.1.0",
+    "lodash": "^3.10.1",
+    "postcss-svg": "^1.0.4",
+    "rimraf": "^2.4.3"
+  }
+}

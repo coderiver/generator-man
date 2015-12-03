@@ -1,0 +1,22 @@
+mixin icon(name)
+  svg(class="icon icon-" + name)
+    use(xlink:href="#icon-" + name)
+
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    block title
+      title Jade Layout Template
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="format-detection" content="telephone=no")
+    link(rel="stylesheet" media="all" href="css/style.css")
+    script(src="js/app.js")
+  body
+
+    //BEGIN out
+    .out
+      | Just text
+      block content
+    //END out
+    

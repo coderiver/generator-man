@@ -5,7 +5,7 @@ var chalk = require('chalk');
 var _ = require('lodash');
 var utils = require('./utils/index');
 
-var XhGenerator = yeoman.generators.Base.extend({
+var ManGenerator = yeoman.generators.Base.extend({
 
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
@@ -49,7 +49,7 @@ var XhGenerator = yeoman.generators.Base.extend({
     },
 
     checkConfig: function () {
-      this.prompts = this.options.config ? require(this.options.config)['generator-xh'].config : this.config.get('config');
+      this.prompts = this.options.config ? require(this.options.config)['generator-man'].config : this.config.get('config');
     }
   },
 
@@ -61,7 +61,7 @@ var XhGenerator = yeoman.generators.Base.extend({
     // Welcome user
     this.log('');
     this.log(chalk.cyan(' ***********************************************************') + '\n');
-    this.log(chalk.cyan('  Welcome to'), chalk.white.bgRed.bold(' XH Generator ') + '\n');
+    this.log(chalk.cyan('  Welcome to'), chalk.white.bgRed.bold(' Coderiver Generator ') + '\n');
     this.log(chalk.white('  A Yeoman generator for scaffolding web projects') + '\n');
     this.log(chalk.cyan(' ***********************************************************') + '\n');
 
@@ -158,4 +158,4 @@ var XhGenerator = yeoman.generators.Base.extend({
 
 });
 
-module.exports = XhGenerator;
+module.exports = ManGenerator;

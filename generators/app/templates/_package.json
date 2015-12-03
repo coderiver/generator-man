@@ -1,5 +1,5 @@
 {
-  "name": "Coderiver-Project",
+  "name": "<%= projectName %>",
   "version": "0.2.0",
   "description": "Riverco.de gulp template",
   "author": "Coderiver <html@coderiver.com.ua>",

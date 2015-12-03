@@ -1,6 +1,17 @@
-Gulp Boilerplate for generic CSS/HTML/JS development
+<%= projectName %>
 =============
-<a href="http://riverco.de" target="_blank">riverco.de</a> gulp boilerplate.
+Based on [riverco.de](http://riverco.de) gulp boilerplate.
+
+How to run
+=============
+You need to have [Node.js](https://nodejs.org/en/) installed. Just do:
+```
+npm install
+```
+To install all the dependencies. After that run project:
+```
+gulp
+```
 
 Structure
 =============
@@ -37,14 +48,8 @@ Naming
 =============
 We use BEM naming, meaning `.block` for independent block. `.block__element` for elements inside that block. And `.block_modification` for modification of the block.
 
-It's noce to name layout blocks with `.l-*` prefixes. So you know it's layout.
+It's nice to name layout blocks with `.l-*` prefixes. So you know it's layout.
 
 States of the blocks use prefix `.is-*`. `.is-running`, `.is-hidden`, `.is-open`.
 
 For javascript hooks we use prefix `.js-*`.
-
-You are welcome
-=============
-Have fun using it, or borrowing some parts. In case of issues or ideas just create them on github. Or write us at <a href="mailto:html@coderiver.com.ua">html@coderiver.com.ua</a>.
-
-gl & hf.

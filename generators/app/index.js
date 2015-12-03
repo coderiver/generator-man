@@ -60,10 +60,10 @@ var ManGenerator = yeoman.generators.Base.extend({
 
     // Welcome user
     this.log('');
-    this.log(chalk.cyan(' ***********************************************************') + '\n');
-    this.log(chalk.cyan('  Welcome to'), chalk.white.bgRed.bold(' Coderiver Generator ') + '\n');
-    this.log(chalk.white('  A Yeoman generator for scaffolding web projects') + '\n');
-    this.log(chalk.cyan(' ***********************************************************') + '\n');
+    this.log(chalk.green(' ***********************************************************') + '\n');
+    this.log(chalk.green('  Welcome to'), chalk.white.bgBlack.bold(' Coderiver Generator ') + '\n');
+    this.log(chalk.green('  Riverco.de Yeoman generator for scaffolding web projects') + '\n');
+    this.log(chalk.green(' ***********************************************************') + '\n');
 
     var done = this.async();
     var prompts = [{
@@ -92,41 +92,36 @@ var ManGenerator = yeoman.generators.Base.extend({
     utils.generate.dotfiles.bind(this)();
 
     // Application files
-    // utils.generate.appfiles.bind(this)();
-  }
+    utils.generate.appfiles.bind(this)();
+  },
   // ,
 
-  // writing: {
-  //   base: function () {
-  //     // Grunt modules
-  //     utils.generate.gruntModules.bind(this)();
+  writing: {
+    base: function () {
+      // Grunt modules
+      // utils.generate.gruntModules.bind(this)();
 
-  //     // Project index
-  //     utils.generate.projectInfo.bind(this)();
+      // // Project index
+      utils.generate.projectInfo.bind(this)();
 
-  //     // Assets directories
-  //     utils.generate.assets.bind(this)();
+      // // Assets directories
+      // utils.generate.assets.bind(this)();
 
-  //     // Template files
-  //     utils.generate.templateFiles.bind(this)();
+      // // Template files
+      // utils.generate.templateFiles.bind(this)();
 
-  //     // Styles
-  //     utils.generate.preprocessor.bind(this)();
+      // // Styles
+      // utils.generate.preprocessor.bind(this)();
 
-  //     // JS
-  //     utils.generate.js.bind(this)();
+      // // JS
+      // utils.generate.js.bind(this)();
 
-  //     if (this.prompts.features.useBootstrap) {
-  //       utils.generate.bootstrap.bind(this)();
-  //     }
-  //   },
+      // if (this.prompts.features.useBootstrap) {
+      //   utils.generate.bootstrap.bind(this)();
+      // }
+    }
+  // ,
 
-  //   // WordPress
-  //   wp: function () {
-  //     if (this.prompts.isWP) {
-  //       utils.generate.wp.bind(this)();
-  //     }
-  //   },
 
   //   // Sprites
   //   sprites: function () {
@@ -135,12 +130,6 @@ var ManGenerator = yeoman.generators.Base.extend({
   //     }
   //   },
 
-  //   // Icomoon
-  //   icomoon: function () {
-  //     if (this.prompts.features.useIcomoon) {
-  //       utils.generate.icomoon.bind(this)();
-  //     }
-  //   },
 
   //   // Browserify
   //   browserify: function () {
@@ -148,7 +137,7 @@ var ManGenerator = yeoman.generators.Base.extend({
   //       utils.generate.browserify.bind(this)();
   //     }
   //   }
-  // },
+  }
 
   // install: function () {
   //   this.installDependencies({

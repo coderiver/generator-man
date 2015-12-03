@@ -1,7 +1,5 @@
 'use strict';
-<% if (spritesmith) { %>
-SPRITESMITH!!!
-<% } %>
+
 var gulp = require('gulp'),
     sass = require('gulp-ruby-sass'),
     postcss = require('gulp-postcss'),
@@ -9,7 +7,11 @@ var gulp = require('gulp'),
     autoprefixer = require('autoprefixer'),
     notify = require('gulp-notify'),
     include = require("gulp-include"),
+
+    <% if (spritesmith) { %>
     spritesmith = require('gulp.spritesmith'),
+    <% } %>
+    
     browserSync = require("browser-sync"),
     iconfont = require("gulp-iconfont"),
     consolidate = require("gulp-consolidate"),

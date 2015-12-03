@@ -29,13 +29,13 @@ var generate = {
     // helpers.copy.call(this, 'gitattributes', '.gitattributes');
     // helpers.copy.call(this, 'jshintrc', '.jshintrc');
     helpers.copy.call(this, 'gulpfile.js', 'gulpfile.js', this.prompts);
-  }
-  // ,
+    helpers.copy.call(this, '_gitignore', '.gitignore');
+  },
 
-  // appfiles: function () {
-  //   helpers.copy.call(this, '_package.json', 'package.json', this.prompts);
-  //   helpers.copy.call(this, '_bower.json', 'bower.json', this.prompts);
-  // },
+  appfiles: function () {
+    helpers.copy.call(this, '_package.json', 'package.json', this.prompts);
+    // helpers.copy.call(this, '_bower.json', 'bower.json', this.prompts);
+  },
 
   // gruntModules: function () {
   //   helpers.copy.call(this, 'Gruntfile.js', 'Gruntfile.js', this.prompts);
@@ -58,10 +58,10 @@ var generate = {
   //   }
   // },
 
-  // projectInfo: function () {
-  //   helpers.copy.call(this, '_index.html', 'index.html', this.prompts);
-  //   helpers.copy.call(this, 'README.md', 'README.md', this.prompts);
-  // },
+  projectInfo: function () {
+    // helpers.copy.call(this, '_index.html', 'index.html', this.prompts);
+    helpers.copy.call(this, 'README.md', 'README.md', this.prompts);
+  }
 
   // assets: function () {
   //   helpers.copy.call(this, 'src/img/.keep', 'src/fonts/.keep');

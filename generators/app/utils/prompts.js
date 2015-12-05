@@ -6,6 +6,12 @@ module.exports = {
     name: 'spritesmith',
     message: 'Do you want to use Sprites?',
     default: true
+  },
+  {
+    type: 'confirm',
+    name: 'bootstrap',
+    message: 'Do we need bootstrap here?',
+    default: false
   }],
 
   update: [{

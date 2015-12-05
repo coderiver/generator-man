@@ -37,26 +37,23 @@ var generate = {
     // helpers.copy.call(this, '_bower.json', 'bower.json', this.prompts);
   },
 
-  // gruntModules: function () {
-  //   helpers.copy.call(this, 'Gruntfile.js', 'Gruntfile.js', this.prompts);
-  //   helpers.copy.call(this, 'grunt/build-helpers.js', 'grunt/build-helpers.js', this.prompts);
+  gulpModules: function () {
+    helpers.copy.call(this, 'gulpfile.js', 'gulpfile.js', this.prompts);
+    helpers.copy.call(this, 'gulp/config.js', 'gulp/config.js', this.prompts);
+    helpers.copy.call(this, 'gulp/helpers/_svgfont.sass', 'gulp/helpers/_svgfont.sass');
+    helpers.copy.call(this, 'gulp/helpers/icons.html', 'gulp/helpers/icons.html');
+    helpers.copy.call(this, 'gulp/helpers/sprite.template.mustache', 'gulp/helpers/sprite.template.mustache');
 
-  //   // read packages from packages.json
-  //   // and include neccessary task config files
-  //   var pkg = this.fs.readJSON(this.destinationPath('package.json')).devDependencies;
-  //   var p, m, f;
 
-  //   for (p in pkg) {
-  //     m = p.match(/^grunt-(.+)$/i);
-  //     if (m) {
-  //       f = 'grunt/' + m[1] + '.js';
+    var pkg = ['sass','iconfont','copy', 'html','jade','spritesmith','watch', 'js','server'];
+    var arrayLength = pkg.length;
+    var p,f;
 
-  //       if (this.fs.exists(this.templatePath(f))) {
-  //         helpers.copy.call(this, f, f, this.prompts);
-  //       }
-  //     }
-  //   }
-  // },
+    for (var i = 0; i < arrayLength; i++) {
+      f = 'gulp/tasks/' + pkg[i] + '.js';
+      helpers.copy.call(this, f, f, this.prompts);
+    }
+  },
 
   projectInfo: function () {
     // helpers.copy.call(this, '_index.html', 'index.html', this.prompts);

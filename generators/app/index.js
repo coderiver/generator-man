@@ -98,10 +98,10 @@ var ManGenerator = yeoman.generators.Base.extend({
 
   writing: {
     base: function () {
-      // Grunt modules
-      // utils.generate.gruntModules.bind(this)();
+      // Gulp modules
+      utils.generate.gulpModules.bind(this)();
 
-      // // Project index
+      // Project index
       utils.generate.projectInfo.bind(this)();
 
       // // Assets directories

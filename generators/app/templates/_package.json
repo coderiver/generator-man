@@ -23,6 +23,7 @@
     "gulp.spritesmith": "^4.1.0",
     "lodash": "^3.10.1",
     "postcss-svg": "^1.0.4",
+    "require-dir": "^0.3.0",
     "rimraf": "^2.4.3"
   }
 }

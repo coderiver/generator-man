@@ -6,6 +6,7 @@ module.exports = function (answers) {
   this.prompts                  = {};
   this.prompts.projectName      = answers.projectName;
   this.prompts.spritesmith      = answers.spritesmith;
+  this.prompts.bootstrap        = answers.bootstrap;
   // this.prompts.cssPreprocessor  = answers.cssPreprocessor;
   // this.prompts.cssPrefix        = answers.cssPreprocessor === 'scss' ? '_' : '';
   this.prompts.features         = {};

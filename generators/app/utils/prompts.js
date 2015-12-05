@@ -9,8 +9,8 @@ module.exports = {
   },
   {
     type: 'confirm',
-    name: 'bootstrap',
-    message: 'Do we need bootstrap here?',
+    name: 'jade',
+    message: 'Do we need Jade?',
     default: false
   }],
 

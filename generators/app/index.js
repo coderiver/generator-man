@@ -104,21 +104,23 @@ var ManGenerator = yeoman.generators.Base.extend({
       // Project index
       utils.generate.projectInfo.bind(this)();
 
-      // // Assets directories
-      // utils.generate.assets.bind(this)();
+      // Assets directories
+      utils.generate.assets.bind(this)();
 
       // // Template files
-      // utils.generate.templateFiles.bind(this)();
+      // utils.generate.templateFiles.bind(this)();      
 
-      // // Styles
-      // utils.generate.preprocessor.bind(this)();
+      // Styles
+      utils.generate.sass.bind(this)();
 
-      // // JS
-      // utils.generate.js.bind(this)();
+      // JS
+      utils.generate.js.bind(this)();
 
-      // if (this.prompts.features.useBootstrap) {
-      //   utils.generate.bootstrap.bind(this)();
-      // }
+      if (this.prompts.features.jade) {
+        utils.generate.jade.bind(this)();
+      } else{
+        utils.generate.html.bind(this)();
+      }
     }
   // ,
 

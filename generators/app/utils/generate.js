@@ -24,7 +24,7 @@ var generate = {
   },
 
   dotfiles: function () {
-    // helpers.copy.call(this, 'bowerrc', '.bowerrc');
+    helpers.copy.call(this, 'bowerrc', '.bowerrc');
     // helpers.copy.call(this, 'editorconfig', '.editorconfig');
     // helpers.copy.call(this, 'gitattributes', '.gitattributes');
     // helpers.copy.call(this, 'jshintrc', '.jshintrc');
@@ -45,12 +45,12 @@ var generate = {
     helpers.copy.call(this, 'gulp/helpers/sprite.template.mustache', 'gulp/helpers/sprite.template.mustache');
 
 
-    var pkg = ['sass','iconfont','copy', 'html','jade','spritesmith','watch', 'js','server'];
-    var arrayLength = pkg.length;
+    var taskslist = ['sass','iconfont','copy', 'html','jade','spritesmith','watch', 'js','server'];
+    var arrayLength = taskslist.length;
     var p,f;
 
     for (var i = 0; i < arrayLength; i++) {
-      f = 'gulp/tasks/' + pkg[i] + '.js';
+      f = 'gulp/tasks/' + taskslist[i] + '.js';
       helpers.copy.call(this, f, f, this.prompts);
     }
   },
@@ -58,13 +58,14 @@ var generate = {
   projectInfo: function () {
     // helpers.copy.call(this, '_index.html', 'index.html', this.prompts);
     helpers.copy.call(this, 'README.md', 'README.md', this.prompts);
-  }
+  },
 
-  // assets: function () {
-  //   helpers.copy.call(this, 'src/img/.keep', 'src/fonts/.keep');
-  //   helpers.copy.call(this, 'src/img/.keep', 'src/img/.keep');
-  //   helpers.copy.call(this, 'src/img/.keep', 'src/media/.keep');
-  // },
+  assets: function () {
+    helpers.copy.call(this, 'src/.keep', 'src/fonts/.keep');
+    helpers.copy.call(this, 'src/.keep', 'src/img/.keep');
+    helpers.copy.call(this, 'src/.keep', 'src/img/icons/.keep');
+    helpers.copy.call(this, 'src/.keep', 'src/img/svg/.keep');
+  },
 
   // templateFiles: function () {
   //   helpers.copy.call(this, 'src/_template.html', 'src/template.' + this.prompts.extension, this.prompts);
@@ -75,14 +76,30 @@ var generate = {
   //   helpers.copy.call(this, 'src/includes/_footer.html', 'src/includes/footer.' + this.prompts.extension, this.prompts);
   //   helpers.copy.call(this, 'src/includes/_scripts.html', 'src/includes/scripts.' + this.prompts.extension, this.prompts);
   // },
+  html: function (type, underscore) {
+    helpers.copy.call(this, 'src/index.html', 'src/index.html', this.prompts);
+    helpers.copy.call(this, 'src/partials/partial.html', 'src/partials/partial.html', this.prompts);
+  },
+  jade: function (type, underscore) {
+    helpers.copy.call(this, 'src/jade/_layout.jade', 'src/jade/_layout.jade', this.prompts);
+    helpers.copy.call(this, 'src/jade/index.jade', 'src/jade/index.jade', this.prompts);
+  },
+  sass: function (type, underscore) {
+    helpers.copy.call(this, 'src/sass/style.sass', 'src/sass/style.sass', this.prompts);
+    helpers.copy.call(this, 'src/sass/_common.sass', 'src/sass/_common.sass', this.prompts);
+    helpers.copy.call(this, 'src/sass/_main.sass', 'src/sass/_main.sass', this.prompts);
+    helpers.copy.call(this, 'src/sass/lib/_media.scss', 'src/sass/lib/_media.scss', this.prompts);
+    helpers.copy.call(this, 'src/sass/lib/_mixins.sass', 'src/sass/lib/_mixins.sass', this.prompts);
+    helpers.copy.call(this, 'src/sass/lib/_reset.sass', 'src/sass/lib/_reset.sass', this.prompts);
+    helpers.copy.call(this, 'src/sass/lib/_slick.sass', 'src/sass/lib/_slick.sass', this.prompts);
+  },
 
-  // preprocessor: function (type, underscore) {
-  //   helpers.createStructure.bind(this)(helpers.getStructure.bind(this)().default, 'src/' + this.prompts.cssPreprocessor);
-  // },
-
-  // js: function () {
-  //   helpers.copy.call(this, 'src/js/_main.js', 'src/js/main.js', this.prompts);
-  // },
+  js: function () {
+    helpers.copy.call(this, 'src/js/app.js', 'src/js/app.js', this.prompts);
+    helpers.copy.call(this, 'src/js/common.js', 'src/js/common.js', this.prompts);
+    helpers.copy.call(this, 'src/js/lib/jquery.js', 'src/js/lib/jquery.js', this.prompts);
+    helpers.copy.call(this, 'src/js/lib/slick.min.js', 'src/js/lib/slick.min.js', this.prompts);
+  },
 
   // wp: function () {
   //   this.fs.write(this.destinationPath(this.prompts.wpThemeFolder + '/.keep'), '');

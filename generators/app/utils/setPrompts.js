@@ -8,6 +8,7 @@ module.exports = function (answers) {
   this.prompts.spritesmith      = answers.spritesmith;
   this.prompts.jade             = answers.jade;
   this.prompts.iconfont         = answers.iconfont;
+  this.prompts.bootstrap        = answers.bootstrap;
   // this.prompts.cssPrefix        = answers.cssPreprocessor === 'scss' ? '_' : '';
   this.prompts.features         = {};
 

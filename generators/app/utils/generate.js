@@ -34,7 +34,6 @@ var generate = {
 
   appfiles: function () {
     helpers.copy.call(this, '_package.json', 'package.json', this.prompts);
-    console.log(this.prompts);
     // helpers.copy.call(this, '_bower.json', 'bower.json', this.prompts);
   },
 

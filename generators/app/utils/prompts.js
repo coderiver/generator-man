@@ -18,6 +18,40 @@ module.exports = {
     name: 'iconfont',
     message: 'Create iconfont from SVG?',
     default: true
+  },
+  {
+    type: 'checkbox',
+    name: 'features',
+    message: 'Choose additional features',
+    choices: [{
+      name: 'jQuery',
+      value: 'useJquery',
+      checked: true
+    }, {
+      name: 'Image optimisation',
+      value: 'useOptim',
+      checked: false
+    }, {
+      name: 'Automatic sprites',
+      value: 'useSprites',
+      checked: false
+    }, {
+      name: 'Icomoon',
+      value: 'useIcomoon',
+      checked: false
+    }, {
+      name: 'Bootstrap',
+      value: 'useBootstrap',
+      checked: false
+    }, {
+      name: 'Modernizr',
+      value: 'useModernizr',
+      checked: false
+    }, {
+      name: 'Browserify',
+      value: 'useBrowserify',
+      checked: false
+    }]
   }],
 
   update: [{

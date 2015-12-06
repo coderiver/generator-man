@@ -94,7 +94,6 @@ var ManGenerator = yeoman.generators.Base.extend({
     // Application files
     utils.generate.appfiles.bind(this)();
   },
-  // ,
 
   writing: {
     base: function () {
@@ -107,7 +106,10 @@ var ManGenerator = yeoman.generators.Base.extend({
       // Assets directories
       utils.generate.assets.bind(this)();
 
-      // // Template files
+      // sprites template
+      utils.generate.spritesmith.bind(this)();
+
+      // Template files
       // utils.generate.templateFiles.bind(this)();      
 
       // Styles
@@ -116,7 +118,11 @@ var ManGenerator = yeoman.generators.Base.extend({
       // JS
       utils.generate.js.bind(this)();
 
-      if (this.prompts.features.jade) {
+      if (this.prompts.iconfont) {
+        utils.generate.iconfont.bind(this)();
+      }
+
+      if (this.prompts.jade) {
         utils.generate.jade.bind(this)();
       } else{
         utils.generate.html.bind(this)();

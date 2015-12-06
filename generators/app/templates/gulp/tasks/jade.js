@@ -1,9 +1,11 @@
+<% if (jade) { %>
 var gulp = require('gulp');
 var notify = require('gulp-notify');
 var plumber = require("gulp-plumber");
 var jade = require("gulp-jade");
 var config = require('../config');
 // var changed = require("gulp-changed");
+
 
 gulp.task('jade', function() {
     return gulp.src([
@@ -31,3 +33,4 @@ gulp.task('jade:watch', function() {
     gulp.watch(config.src.jade + '/**/*.jade', ['jade']);
     gulp.watch([config.src.jade + '/_*.jade', config.src.jade + '/includes/*.jade'], ['jade-all']);
 });
+<% } %>

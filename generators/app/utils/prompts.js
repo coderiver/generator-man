@@ -12,6 +12,12 @@ module.exports = {
     name: 'jade',
     message: 'Do we need Jade?',
     default: false
+  },
+  {
+    type: 'confirm',
+    name: 'iconfont',
+    message: 'Create iconfont from SVG?',
+    default: true
   }],
 
   update: [{

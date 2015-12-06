@@ -34,15 +34,15 @@ var generate = {
 
   appfiles: function () {
     helpers.copy.call(this, '_package.json', 'package.json', this.prompts);
+    console.log(this.prompts);
     // helpers.copy.call(this, '_bower.json', 'bower.json', this.prompts);
   },
 
   gulpModules: function () {
     helpers.copy.call(this, 'gulpfile.js', 'gulpfile.js', this.prompts);
     helpers.copy.call(this, 'gulp/config.js', 'gulp/config.js', this.prompts);
-    helpers.copy.call(this, 'gulp/helpers/_svgfont.sass', 'gulp/helpers/_svgfont.sass');
-    helpers.copy.call(this, 'gulp/helpers/icons.html', 'gulp/helpers/icons.html');
-    helpers.copy.call(this, 'gulp/helpers/sprite.template.mustache', 'gulp/helpers/sprite.template.mustache');
+    
+    
 
 
     var taskslist = ['sass','iconfont','copy', 'html','jade','spritesmith','watch', 'js','server'];
@@ -55,6 +55,15 @@ var generate = {
     }
   },
 
+  spritesmith: function () {
+    helpers.copy.call(this, 'gulp/helpers/sprite.template.mustache', 'gulp/helpers/sprite.template.mustache');
+  },
+
+  iconfont: function () {
+    helpers.copy.call(this, 'gulp/helpers/_svgfont.sass', 'gulp/helpers/_svgfont.sass');
+    helpers.copy.call(this, 'gulp/helpers/icons.html', 'gulp/helpers/icons.html');
+  },
+
   projectInfo: function () {
     // helpers.copy.call(this, '_index.html', 'index.html', this.prompts);
     helpers.copy.call(this, 'README.md', 'README.md', this.prompts);
@@ -63,8 +72,8 @@ var generate = {
   assets: function () {
     helpers.copy.call(this, 'src/.keep', 'src/fonts/.keep');
     helpers.copy.call(this, 'src/.keep', 'src/img/.keep');
-    helpers.copy.call(this, 'src/.keep', 'src/img/icons/.keep');
-    helpers.copy.call(this, 'src/.keep', 'src/img/svg/.keep');
+    helpers.copy.call(this, 'src/img/icons/coderiver.png', 'src/img/icons/coderiver.png');
+    helpers.copy.call(this, 'src/img/svg/sepa.svg', 'src/img/svg/sepa.svg');
   },
 
   // templateFiles: function () {

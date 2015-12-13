@@ -13,7 +13,9 @@
   ],
   "main": "generators/index.js",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "coderiver",
+    "boilerplate"
   ],
   "dependencies": {
     "yeoman-generator": "^0.21.1",

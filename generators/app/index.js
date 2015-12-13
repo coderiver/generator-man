@@ -130,28 +130,19 @@ var ManGenerator = yeoman.generators.Base.extend({
     }
   // ,
 
-
-  //   // Sprites
-  //   sprites: function () {
-  //     if (this.prompts.features.useSprites) {
-  //       utils.generate.sprites.bind(this)();
-  //     }
-  //   },
-
-
   //   // Browserify
   //   browserify: function () {
   //     if (this.prompts.features.useBrowserify) {
   //       utils.generate.browserify.bind(this)();
   //     }
   //   }
-  }
+  },
 
-  // install: function () {
-  //   this.installDependencies({
-  //     skipInstall: this.options['skip-install']
-  //   });
-  // }
+  install: function () {
+    this.installDependencies({
+      skipInstall: this.options['skip-install']
+    });
+  }
 
 });
 

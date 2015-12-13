@@ -36,7 +36,7 @@ module.exports = function () {
     console.error(message);
   };
 
-  // copying 'npm update -g generator-xh' to clipboard
+  // copying 'npm update -g generator-man' to clipboard
   var copyToClipboard = function (data) {
     var proc;
     var exec;

@@ -1,36 +1,38 @@
-<% if (jade) { %>
-var gulp = require('gulp');
-var notify = require('gulp-notify');
-var plumber = require("gulp-plumber");
-var jade = require("gulp-jade");
-var config = require('../config');
-// var changed = require("gulp-changed");
+var gulp        = require('gulp');
+var jade        = require('gulp-jade');
+var plumber     = require('gulp-plumber');
+var changed     = require('gulp-changed');
+var gulpif      = require('gulp-if');
+var frontMatter = require('gulp-front-matter');
+var prettify    = require('gulp-prettify');
+var config      = require('../config');
 
+function renderHtml(onlyChanged) {
+    return gulp
+        .src([config.src.templates + '/[^_]*.jade'])
+        .pipe(plumber({ errorHandler: config.errorHandler }))
+        .pipe(gulpif(onlyChanged, changed(config.dest.html, { extension: '.html' })))
+        .pipe(frontMatter({ property: 'data' }))
+        .pipe(jade())
+        .pipe(prettify({
+            indent_size: 2,
+            wrap_attributes: 'auto', // 'force'
+            preserve_newlines: true,
+            // unformatted: [],
+            end_with_newline: true
+        }))
+        .pipe(gulp.dest(config.dest.html));
+}
 
 gulp.task('jade', function() {
-    return gulp.src([
-            config.src.jade + '/*.jade', 
-            '!' + config.src.jade + '/_*.jade', 
-            '!' + config.src.jade + '/includes/*.jade'])
-        .pipe(plumber({errorHandler: notify.onError(function(error){return error.message;})}))
-        // .pipe(changed(dest.html, {extension: '.html'}))
-        .pipe(jade({pretty: true}))
-        .pipe(gulp.dest(config.dest.html));
+    return renderHtml();
 });
 
-//compile all jade files
-gulp.task('jade-all', function() {
-    return gulp.src([
-        config.src.jade + '/*.jade', 
-        '!' + config.src.jade + '/_*.jade', 
-        '!' + config.src.jade + '/includes/*.jade'])
-        .pipe(plumber({errorHandler: notify.onError(function(error){return error.message;})}))
-        .pipe(jade({pretty: true}))
-        .pipe(gulp.dest(config.dest.html));
+gulp.task('jade:changed', function() {
+    return renderHtml(true);
 });
 
 gulp.task('jade:watch', function() {
-    gulp.watch(config.src.jade + '/**/*.jade', ['jade']);
-    gulp.watch([config.src.jade + '/_*.jade', config.src.jade + '/includes/*.jade'], ['jade-all']);
+    gulp.watch([config.src.templates + '/**/_*.jade'], ['jade']);
+    gulp.watch([config.src.templates + '/**/[^_]*.jade'], ['jade:changed']);
 });
-<% } %>

@@ -2,7 +2,6 @@
 var updateNotifier = require('update-notifier');
 var stringLength = require('string-length');
 var chalk = require('chalk');
-var utils = require('./utils/index');
 var pkg = require('../../package.json');
 
 // notify user about updates
@@ -69,7 +68,22 @@ module.exports = function () {
     if (update && update.latest !== update.current) {
       updateMessage(update);
 
-      this.prompt(utils.prompts.update, function (props) {
+      this.prompt([{
+        type: 'list',
+        name: 'updateNotify',
+        message: 'Do you want to update your current version?',
+        choices: [{
+          name: 'Yes (stops the generator and copies the update command to clipboard)',
+          value: 'yesandcopy'
+        }, {
+          name: 'Yes (stops the generator)',
+          value: 'yes'
+        }, {
+          name: 'No (continues running the generator)',
+          value: 'No'
+        }],
+        default: 'yesandcopy'
+      }], function (props) {
         this.updateNotify = props.updateNotify;
 
         if (this.updateNotify === 'yesandcopy') {

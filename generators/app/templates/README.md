@@ -1,55 +1,58 @@
-<%= projectName %>
-=============
-Based on [riverco.de](http://riverco.de) gulp boilerplate.
+#How to use
 
-How to run
-=============
-You need to have [Node.js](https://nodejs.org/en/) installed. Just do:
-```
-npm install
-```
-To install all the dependencies. After that run project:
-```
-gulp
-```
+Clone this repo and then in command line type:
 
-Structure
-=============
-`/src/` - thats where you write code.
+* `npm install` - install all dependencies
+* `gulp` - run dev-server and let magic happen, or
+* `gulp build` - build project from sources
 
-`/site/` - compiled code. Do not ever edit this folder.
+--
 
-What is happening
-=============
-We have two options for building html
-1) `/src/index.html` and `/src/partials/` - for old school HTML.
+## List of Gulp tasks
 
-2) Optionally one can use `Jade` (it's commented in gulpfile.js). Basic template is in `/src/jade/`
+To run separate task type in command line `gulp [task_name]`.
+Almost all tasks also have watch mode - `gulp [task_name]:watch`, but you don't need to use it directly.
 
-_Sass_ is compiled and postprocessed with Autoprefixer. We are using `gulp-ruby-sass`, so don't forget to _install Ruby and Sass_ to use this boilerplate.
+### Main tasks
+Task name          | Description                                                      
+:------------------|:----------------------------------
+`default`          | will start all tasks required by project in dev mode: initial build, watch files, run server with livereload
+`build:dev`        | build dev version of project (without code optimizations)
+`build`            | build production-ready project (with code optimizations)
 
-`src/img/icons` are joined into sprite, which could be used in Sass like this:
-```
-.icon
-    +s(png_name)
-```
+### Other tasks
+Task name          | Description                                                      
+:------------------|:----------------------------------
+`sass` 	         | compile .sass/.scss to .css. We also use [postcss](https://github.com/postcss/postcss) for [autoprefixer](https://github.com/postcss/autoprefixer), so feel free to include other awesome postcss [plugins](https://github.com/postcss/postcss#plugins) when needed
+`browserify`       | compile .js sources into bundle file
+`webpack`          | compile .js sources into bundle file
+`copy`             | copy common files from `./src` path to `./dist` path
+`swig`             | compile [swig](http://paularmstrong.github.io/swig/)  templates
+`nunjucks`         | compile Mozilla's awesome [nunjucks](https://mozilla.github.io/nunjucks/) templates
+`jade`             | compile [jade](http://jade-lang.com/) templates
+`imagemin`         | images optimization
+`svgo`             | optimize svg files with [svgo](https://github.com/svg/svgo)
+`iconfont`         | compile iconfonts from svg sources
+`sprite:svg`       | create svg symbol sprites ([css-tricks](https://css-tricks.com/svg-sprites-use-better-icon-fonts/))
+`sprite:png`       | create png sprites
+`server`           | run dev-server powered by [BrowserSync](https://www.browsersync.io/)
+`clean`            | remove `./dist` folder
+`index-page`       | create index file with links to all project pages
 
-`src/img/svg` are joined into icon font, and can be used like this:
-```
-<i class="icon-svg_name"></i>
-```
+_This is a full list of tasks, that we use in our projects, but not all of them should be available in current project. For example, we only use one template engine out of these three [`jade`, `nunjucks`, `swig`]. Or if project uses `webpack`, then `browserify` is not needed at all, and vise versa. All available tasks are placed in a folder `./gulp/tasks` as separate *.js files. Usually, file name = task name._
 
-We are also using simplest include system with `gulp-rigger`, works for javascrpt and html:
-```
-//= partials/partial.html
-```
 
-Naming
-=============
-We use BEM naming, meaning `.block` for independent block. `.block__element` for elements inside that block. And `.block_modification` for modification of the block.
+## Flags
 
-It's nice to name layout blocks with `.l-*` prefixes. So you know it's layout.
+We have several useful flags.
 
-States of the blocks use prefix `.is-*`. `.is-running`, `.is-hidden`, `.is-open`.
+* `gulp --open` or `gulp server --open` - run dev server and then open preview in browser
+* `gulp --tunnel=[name]` or `gulp server --tunnel [name]` - runs dev server and allows you to easily share a web service on your local development machine (powered by [localtunnel.me](https://localtunnel.me/)). After this command your local site will be available over `[name].localtunnel.me` link.
+* `gulp [task_name] --prod` or `gulp [task_name] --production` - run task in production mode. Some the tasks (for example, sass or js compilation) have additional optimization for production mode (such as code minification), so with this flag you can force production mode. `gulp build` uses this mode by default.
 
-For javascript hooks we use prefix `.js-*`.
+##Other
+You can also use [npm scripts](https://docs.npmjs.com/misc/scripts):
+
+* `npm run ghpages` to push only `./dist` folder to **gh-pages** branch on github (very useful for previews).
+* `npm run start` - same as `gulp default`.
+* `npm run build` - same as `gulp build`.

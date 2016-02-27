@@ -1,0 +1,35 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>INDEX</title>
+  <style>
+    body {
+      color: #333;
+      margin: 0;
+      padding: 40px;
+      font-family: PT Mono, monospace, sans-serif;;
+    }
+    h1 {
+      font-family: inherit;
+    }
+    ol {
+      font-size: 20px;
+      line-height: 1.6;
+    }
+    a {
+      color: inherit;
+    }
+    a:hover {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pages:</h1>
+  <ol><% _.each(pages, function(page) { %>
+    <li>
+      <a href="<%= page %>"><%= _.split(page, '.', 1) %></a>
+    </li>
+  <% }) %></ol>
+</body>
+</html>

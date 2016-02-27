@@ -1,6 +1,6 @@
 {
   "name": "generator-man",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Coderiver scaffolding",
   "homepage": "github.com/coderiver/generator-man",
   "author": {
@@ -21,9 +21,10 @@
     "yeoman-generator": "^0.21.1",
     "chalk": "^1.0.0",
     "yosay": "^1.0.2",
-    "lodash": "^3.10.1",
+    "lodash": "^4.5.1",
     "string-length": "^1.0.1",
-    "update-notifier": "^0.6.0"
+    "update-notifier": "^0.6.0",
+    "mkdirp": "^0.5.1",
   },
   "devDependencies": {
     "gulp": "^3.6.0",

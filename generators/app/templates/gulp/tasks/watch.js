@@ -1,28 +1,16 @@
-var gulp = require('gulp');
-var rimraf = require('rimraf');
+var gulp   = require('gulp');
 var config = require('../config');
 
-gulp.task('watch', [
-    'sprite:watch',
-    'sass:watch',
-    'copy:watch',
-    'html:watch',
-    <% if (jade) { %>'jade:watch', <% } %>
-    'font:watch',
-    'js:watch'
+gulp.task('watch', [<% if (templates === 'swig') { %>
+    'swig:watch',<% } %><% if (templates === 'jade') { %>
+    'jade:watch',<% } %><% if (templates === 'nunjucks') { %>
+    'nunjucks:watch',<% } %><% if (sprites.indexOf('iconfont') !== -1) { %>
+    'iconfont:watch',<% } %><% if (sprites.indexOf('svg') !== -1) { %>
+    'sprite:svg:watch',<% } %><% if (sprites.indexOf('png') !== -1) { %>
+    'sprite:png:watch',<% } %><% if (imagemin) { %>
+    'imagemin:watch',<% } %><% if (svgo) { %>
+    'svgo:watch',<% } %><% if (bundler === 'browserify') { %>
+    'browserify:watch',<% } %><% if (bundler === 'webpack') { %>
+    'webpack:watch',<% } %>
+    'sass:watch'
 ]);
-
-
-gulp.task('delete', function (cb) {
-    rimraf('./'+config.dest.root, cb);
-});
-gulp.task('default', ['server', 'watch'], function() {});
-gulp.task('build', [
-	'html',
-	<% if (jade) { %>'jade',<% } %>
-	<% if (iconfont) { %>'font',<% } %>
-	'sprite',
-	'copy',
-	'js',
-	'sass'
-	], function() {});

@@ -34,6 +34,17 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   end: function () {
+    if (this.props.sprites.indexOf('svg') > -1) {
+      this.log(
+        '\n'
+        + chalk.red('DON\'T FORGET')
+        + ' to install '
+        + chalk.blue('svg4everybody')
+        + ' or ' + chalk.blue('svgxuse')
+        + ' otherwise IE will not show you svg sprite ¯\\_(ツ)_/¯'
+        + '\n'
+      );
+    }
     this.log(chalk.green('Done!'));
   }
 });

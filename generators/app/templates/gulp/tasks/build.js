@@ -7,8 +7,7 @@ function build(cb) {
         'clean',<% if (sprites.indexOf('iconfont') !== -1) { %>
         'iconfont',<% } %><% if (sprites.indexOf('svg') !== -1) { %>
         'sprite:svg',<% } %><% if (sprites.indexOf('png') !== -1) { %>
-        'sprite:png',<% } %><% if (imagemin) { %>
-        'imagemin',<% } %><% if (svgo) { %>
+        'sprite:png',<% } %><% if (svgo) { %>
         'svgo',<% } %>
         'sass',<% if (templates === 'swig') { %>
         'swig',<% } %><% if (templates === 'jade') { %>

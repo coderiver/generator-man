@@ -72,12 +72,6 @@ module.exports = [
       }
     ]
   },
-  // {
-  //   type: 'confirm',
-  //   name: 'imagemin',
-  //   message: 'Use image optimization?',
-  //   default: false
-  // },
   {
     type: 'confirm',
     name: 'svgo',

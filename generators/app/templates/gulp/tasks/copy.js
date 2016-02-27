@@ -17,7 +17,7 @@ gulp.task('copy:rootfiles', function() {
     return gulp
         .src(config.src.root + '/*.*')
         .pipe(gulp.dest(config.dest.root));
-});<% if (!imagemin) { %>
+});
 
 gulp.task('copy:img', function() {
     return gulp
@@ -26,10 +26,10 @@ gulp.task('copy:img', function() {
             '!' + config.src.img + '/svgo/**/*.*'
         ])
         .pipe(gulp.dest(config.dest.img));
-});<% } %>
+});
 
-gulp.task('copy', [<% if (!imagemin) { %>
-    'copy:img',<% } %>
+gulp.task('copy', [
+    'copy:img',
     // 'copy:rootfiles',
     // 'copy:lib',
     'copy:fonts'

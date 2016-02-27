@@ -24,7 +24,7 @@
     "lodash": "^4.5.1",
     "string-length": "^1.0.1",
     "update-notifier": "^0.6.0",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "^0.5.1"
   },
   "devDependencies": {
     "gulp": "^3.6.0",

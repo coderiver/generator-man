@@ -30,7 +30,6 @@ Task name          | Description
 `swig`             | compile [swig](http://paularmstrong.github.io/swig/)  templates
 `nunjucks`         | compile Mozilla's awesome [nunjucks](https://mozilla.github.io/nunjucks/) templates
 `jade`             | compile [jade](http://jade-lang.com/) templates
-`imagemin`         | images optimization
 `svgo`             | optimize svg files with [svgo](https://github.com/svg/svgo)
 `iconfont`         | compile iconfonts from svg sources
 `sprite:svg`       | create svg symbol sprites ([css-tricks](https://css-tricks.com/svg-sprites-use-better-icon-fonts/))

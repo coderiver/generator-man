@@ -44,12 +44,12 @@ gulp.task('nunjucks:changed', function() {
     return renderHtml(true);
 });
 
-gulp.task('nunjucks:watch',  function() {
+gulp.task('nunjucks:watch', function() {
     gulp.watch([
         config.src.templates + '/**/[^_]*.html'
     ], ['nunjucks:changed']);
 
     gulp.watch([
-        config.src.templates + '/**/_*.html',
+        config.src.templates + '/**/_*.html'
     ], ['nunjucks']);
 });

@@ -87,7 +87,7 @@ module.exports = function () {
   }
 
   if (props.bundler === 'webpack') {
-    this.copy('gulp/tasks/webpack.js');
+    this.bulkCopy('gulp/tasks/webpack.js', 'gulp/tasks/webpack.js');
     this.copy('webpack.config.js');
     this.copy('babelrc', '.babelrc');
   }

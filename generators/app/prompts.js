@@ -45,7 +45,7 @@ module.exports = [
       //   value: 'browserify'
       // },
       {
-        name: 'Not use modules bundler',
+        name: 'I will merge files manually.',
         value: null
       }
     ]
@@ -53,7 +53,7 @@ module.exports = [
   {
     type: 'checkbox',
     name: 'sprites',
-    message: 'Which from icon system would be used',
+    message: 'How will we handle icons-sprites?',
     choices: [
       {
         name: 'SVG sprites',

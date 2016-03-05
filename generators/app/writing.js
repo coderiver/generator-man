@@ -23,6 +23,7 @@ module.exports = function () {
   this.copy('editorconfig', '.editorconfig');
   this.copy('eslintrc', '.eslintrc');
   this.copy('gulpfile.js');
+  this.copy('README.md');
   this.template('package.json', props);
 
   // gulp configs

@@ -1,7 +1,7 @@
 var util = require('gulp-util');
 
 var production = util.env.production || util.env.prod || false;
-var destPath = 'dist';
+var destPath = 'build';
 
 var config = {
     env       : 'development',

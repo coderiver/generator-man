@@ -23,10 +23,10 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
     "require-dir": "^0.3.0",
+    "gulp-consolidate": "^0.1.2",
     "run-sequence": "^1.1.5",<% if (sprites.indexOf('iconfont') !== -1) { %>
     "gulp-svgmin": "^1.2.0",
-    "gulp-iconfont": "^5.0.1",
-    "gulp-consolidate": "^0.1.2",<% } %><% if (sprites.indexOf('png') !== -1) { %>
+    "gulp-iconfont": "^5.0.1",<% } %><% if (sprites.indexOf('png') !== -1) { %>
     "gulp.spritesmith": "^6.0.0",
     "vinyl-buffer": "^1.0.0",
     "gulp-imagemin": "^2.4.0",<% } %><% if (sprites.indexOf('svg') !== -1) { %>

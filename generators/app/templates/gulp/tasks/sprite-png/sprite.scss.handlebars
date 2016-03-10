@@ -91,6 +91,10 @@ ${{retina_groups_info.strings.name}}: ({{#each retina_groups}}${{strings.name_gr
   @include sprite-height($sprite);
 }
 
+@mixin s($sprite) {
+  @include sprite($sprite);
+}
+
 @mixin sprites {
   $sprites: map-get($spritesheet, '{{spritesheet_info.strings.bare_sprites}}');
   @each $sprite in $sprites {

@@ -34,3 +34,6 @@ gulp.task('copy', [
     // 'copy:lib',
     'copy:fonts'
 ]);
+gulp.task('copy:watch', function() {
+    gulp.watch(config.src.img+'/*', ['copy']);
+});

@@ -46,7 +46,7 @@ module.exports = [
       // },
       {
         name: 'I will merge files manually.',
-        value: null
+        value: 'manually'
       }
     ]
   },

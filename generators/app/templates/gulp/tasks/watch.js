@@ -2,8 +2,8 @@ var gulp   = require('gulp');
 var config = require('../config');
 
 gulp.task('watch', 
-    'copy:watch',
-    [<% if (templates === 'swig') { %>
+    ['copy:watch',
+    <% if (templates === 'swig') { %>
     'swig:watch',<% } %><% if (templates === 'jade') { %>
     'jade:watch',<% } %><% if (templates === 'nunjucks') { %>
     'nunjucks:watch',<% } %><% if (sprites.indexOf('iconfont') !== -1) { %>
@@ -12,6 +12,7 @@ gulp.task('watch',
     'sprite:png:watch',<% } %><% if (svgo) { %>
     'svgo:watch',<% } %><% if (bundler === 'browserify') { %>
     'browserify:watch',<% } %><% if (bundler === 'webpack') { %>
-    'webpack:watch',<% } %>
+    'webpack:watch',<% } %><% if (bundler === 'manually') { %>
+    'js:watch',<% } %>
     'sass:watch'
 ]);

@@ -24,6 +24,7 @@
     "gulp-util": "^3.0.7",
     "require-dir": "^0.3.0",
     "gulp-consolidate": "^0.2.0",
+    "gulp-include": "^2.0.3",
     "run-sequence": "^1.1.5",<% if (sprites.indexOf('iconfont') !== -1) { %>
     "gulp-svgmin": "^1.2.0",
     "gulp-iconfont": "^5.0.1",<% } %><% if (sprites.indexOf('png') !== -1) { %>

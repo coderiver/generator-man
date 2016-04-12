@@ -33,7 +33,7 @@ gulp.task('iconfont', function() {
             // generate icons preview in development mode
             gulp.src(__dirname + '/iconfont.html')
                 .pipe(consolidate('lodash', props))
-                .pipe(gulp.dest(config.src.root));
+                .pipe(gulp.dest(config.dest.root));
         })
         .pipe(gulp.dest(config.dest.fonts));
 });

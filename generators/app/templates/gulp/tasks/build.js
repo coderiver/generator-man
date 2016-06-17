@@ -14,7 +14,8 @@ function build(cb) {
         'jade',<% } %><% if (templates === 'nunjucks') { %>
         'nunjucks',<% } %><% if (bundler === 'browserify') { %>
         'browserify',<% } %><% if (bundler === 'webpack') { %>
-        'webpack',<% } %>
+        'webpack',<% } %><% if (bundler === 'manually') { %>
+        'js',<% } %>
         'copy',
         cb
     );

@@ -92,6 +92,9 @@ module.exports = function () {
     this.copy('webpack.config.js');
     this.copy('babelrc', '.babelrc');
   }
+  else{
+    this.bulkCopy('gulp/tasks/js.js', 'gulp/tasks/js.js');
+  }
 
   // copy directories
   this.directory('src/js', 'src/js');

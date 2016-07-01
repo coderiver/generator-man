@@ -12,17 +12,18 @@ gulp.task('sprite:png', function() {
     }))
     .pipe(spritesmith({
         imgName: 'sprite.png',
-        cssName: '_sprite-png.scss',
+        cssName: '_sprite-png.sass',
         imgPath: '../img/sprite.png',
         // retinaSrcFilter: config.src.iconsPng + '/*@2x.png',
         // retinaImgName: 'sprite@2x.png',
         // retinaImgPath: '../img/sprite@2x.png',
         padding: 10,
         algorithm: 'binary-tree',
-        cssTemplate: __dirname + '/sprite.scss.handlebars',
-        cssVarMap: function(sprite) {
-            sprite.name = 'icon-' + sprite.name;
-        }
+        cssTemplate: __dirname + '/sprite.template.mustache'
+        // ,
+        // cssVarMap: function(sprite) {
+        //     sprite.name = 'icon-' + sprite.name;
+        // }
     }));
     spriteData.img
         .pipe(buffer())

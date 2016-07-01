@@ -1,0 +1,53 @@
+{
+  // Default options
+  'functions': true
+}
+
+$icons: (0:0)
+{{#items}}
+$icons: map-merge($icons,('{{name}}': (X: {{px.offset_x}}, Y:{{px.offset_y}}, W: {{px.width}}, H: {{px.height}}, TW: {{px.total_width}}, TH: {{px.total_height}}, IMG: '{{{escaped_image}}}')))
+{{/items}}
+
+
+{{#options.functions}}
+// Gets an attribute from the sass map
+@function icon-attr($icon, $attr)
+  $icon: map-get($icons, $icon)
+  @return map-get($icon, $attr)
+
+@mixin sprite($iconName)
+  background-image: url(icon-attr($iconName, IMG))
+  width: icon-attr($iconName, W)
+  height: icon-attr($iconName, H)
+  background-position: icon-attr($iconName, X) icon-attr($iconName, Y)
+@mixin sprite-position($iconName)
+  background-position: icon-attr($iconName, X) icon-attr($iconName, Y)
+@mixin sprite-retina($iconName)
+  background-image: url(icon-attr($iconName, IMG))
+  $width: icon-attr($iconName, W)
+  $height: icon-attr($iconName, H)
+  width: $width/2
+  height: $height/2
+  $x: icon-attr($iconName, X)
+  $y: icon-attr($iconName, Y)
+  background-position: $x/2 $y/2
+  $tw: icon-attr($iconName, TW)   
+  $th: icon-attr($iconName, TH)
+  background-size: $tw/2 $th/2    
+
+{{/options.functions}}
+
+@mixin s($i)
+  +sprite($i)
+@mixin sp($i)
+  +sprite-position($i)
+@mixin sr($i)
+  +sprite-retina($i)  
+
+//{{#items}}
+//.icon-{{name}}
+//  width: {{px.width}}
+//  height: {{px.height}}
+//  background-image: url('{{{escaped_image}}}')
+//  background-position: {{px.offset_x}} {{px.offset_y}}
+//{{/items}}

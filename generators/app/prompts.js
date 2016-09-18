@@ -33,6 +33,22 @@ module.exports = [
   },
   {
     type: 'list',
+    name: 'css',
+    message: 'Choose CSS engine',
+    choices: [
+      {
+        name: 'Sass + PostCSS',
+        value: 'sass'
+      },
+      {
+        name: 'PostCSS (with SugarSS and Stylelint)',
+        value: 'postcss'
+      }
+    ],
+    default: 0
+  },
+  {
+    type: 'list',
     name: 'bundler',
     message: 'Choose js modules bundler',
     choices: [
@@ -40,10 +56,6 @@ module.exports = [
         name: 'Webpack',
         value: 'webpack'
       },
-      // {
-      //   name: 'Browserify',
-      //   value: 'browserify'
-      // },
       {
         name: 'I will merge files manually.',
         value: 'manually'

@@ -22,6 +22,7 @@ module.exports = function () {
   this.copy('gitignore', '.gitignore');
   this.copy('editorconfig', '.editorconfig');
   this.copy('eslintrc', '.eslintrc');
+  this.copy('stylelintrc', '.stylelintrc');
   this.copy('gulpfile.js');
   this.copy('README.md');
   this.template('package.json', props);
@@ -29,17 +30,18 @@ module.exports = function () {
   // gulp configs
   this.copy('gulp/config.js');
   this.bulkDirectory('gulp/util', 'gulp/util');
-
+  
   // common tasks
   this.template('gulp/tasks/default.js');
   this.template('gulp/tasks/build.js', props);
+  
   this.template('gulp/tasks/watch.js', props);
   this.template('gulp/tasks/copy.js', props);
   this.copy('gulp/tasks/clean.js');
   this.copy('gulp/tasks/server.js');
-  this.copy('gulp/tasks/sass.js');
   this.bulkDirectory('gulp/tasks/index-page', 'gulp/tasks/index-page');
 
+  this.sprites = props.sprites; // or in /templates/src/sass/app.sass use options.sprites
   // compile templates tasks
   switch (props.templates) {
     case 'nunjucks':
@@ -50,6 +52,15 @@ module.exports = function () {
       break;
     case 'jade':
       this.copy('gulp/tasks/jade.js');
+      break;
+  }
+
+  switch (props.css) {
+    case 'sass':
+      this.copy('gulp/tasks/sass.js');
+      break;
+    case 'postcss':
+      this.copy('gulp/tasks/postcss.js');
       break;
   }
 
@@ -96,10 +107,18 @@ module.exports = function () {
     this.bulkCopy('gulp/tasks/js.js', 'gulp/tasks/js.js');
   }
 
+  if (props.css === 'sass') {
+    this.directory('src/sass', 'src/sass');
+  } else{
+    this.directory('src/postcss', 'src/sass');
+  }
+
+  
+
   // copy directories
   this.directory('src/js', 'src/js');
-  this.sprites = props.sprites; // or in /templates/src/sass/app.sass use options.sprites
-  this.directory('src/sass', 'src/sass');
+  
+  
 
   switch (props.templates) {
     case 'nunjucks':

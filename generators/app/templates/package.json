@@ -6,7 +6,7 @@
     "build": "gulp build --production",
     "start": "gulp"
   },
-  "authors": "buschidos <sergey.snjozyk@gmail.com>",
+  "authors": "Coderiver <html@coderiver.com.ua>",
   "devDependencies": {
     "autoprefixer": "^6.3.3",
     "browser-sync": "^2.10.0",
@@ -17,7 +17,22 @@
     "gulp-if": "^2.0.0",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
-    "gulp-postcss": "^6.0.1",
+    "gulp-postcss": "^6.1.1",<% if (css === 'postcss') { %>
+    "gulp-sass-to-postcss-mixins": "0.0.2",
+    "postcss": "^5.0.10",
+    "postcss-advanced-variables": "^1.2.2",
+    "postcss-assets": "^4.1.0",
+    "postcss-atroot": "^0.1.3",
+    "postcss-color-function": "^2.0.1",
+    "postcss-conditionals": "^2.0.2",
+    "postcss-easy-import": "^1.0.1",
+    "postcss-extend": "^1.0.5",
+    "postcss-hexrgba": "^0.2.0",
+    "postcss-media-minmax": "^2.1.2",
+    "postcss-mixins": "^5.2.0",
+    "postcss-nested": "^1.0.0",
+    "postcss-property-lookup": "^1.2.1",
+    "gulp-stylelint": "^3.1.0",<% } %>
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",

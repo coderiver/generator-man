@@ -8,8 +8,9 @@ function build(cb) {
         'iconfont',<% } %><% if (sprites.indexOf('svg') !== -1) { %>
         'sprite:svg',<% } %><% if (sprites.indexOf('png') !== -1) { %>
         'sprite:png',<% } %><% if (svgo) { %>
-        'svgo',<% } %>
-        'sass',<% if (templates === 'swig') { %>
+        'svgo',<% } %><% if (css === 'sass') { %>
+        'sass'<% } %><% if (css === 'postcss') { %>
+        'sss'<% } %><% if (templates === 'swig') { %>
         'swig',<% } %><% if (templates === 'jade') { %>
         'jade',<% } %><% if (templates === 'nunjucks') { %>
         'nunjucks',<% } %><% if (bundler === 'browserify') { %>

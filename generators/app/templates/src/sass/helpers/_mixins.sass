@@ -72,14 +72,14 @@
 =gh($color1, $color2)
   background-image: linear-gradient(left, $color1, $color2)
 
-// font-family
+// font-family 
 =font($alias, $name)
   @font-face
     font-family: $alias
     src: url("fonts/" + $name + ".woff2") format("woff2"), url("fonts/" + $name + ".woff") format("woff")
     font-weight: normal
     font-style: normal
-// usage:
+// to use:
 //+font(black, cytiapro-black-webfont)
 
 // ROTATE

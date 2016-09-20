@@ -90,7 +90,16 @@ module.exports = function () {
 
   // png sprites task
   if (props.sprites.indexOf('png') !== -1) {
-    this.bulkDirectory('gulp/tasks/sprite-png', 'gulp/tasks/sprite-png');
+    this.template('gulp/tasks/sprite-png/sprite-png.js',props);
+
+    switch (props.css) {
+      case 'sass':
+        this.template('gulp/tasks/sprite-png/sprite.template.mustache',props);
+        break;
+      case 'postcss':
+        this.template('gulp/tasks/sprite-png/sprite.sss.template.mustache',props);
+        break;
+    }
   }
 
   // js bundler task

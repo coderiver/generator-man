@@ -45,7 +45,7 @@ gulp.task('sprite:svg', function() {
                 };
             }).get();
             this.push(file);
-            gulp.src(__dirname + '/_sprite-svg.scss')
+            gulp.src(__dirname + '/_sprite-svg.s<% if (css === 'sass') { %>c<% } %>ss')
                 .pipe(consolidate('lodash', {
                     symbols: data
                 }))

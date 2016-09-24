@@ -16,7 +16,7 @@ var processors = [
         prefix: '_'
     }),
     require('postcss-mixins')({
-        mixinsDir: 'src/sass/mixins'
+        mixinsDir: config.src.sass+'/mixins'
     }),
     require('postcss-conditionals'),
     require('postcss-advanced-variables'),
@@ -38,6 +38,7 @@ var processors = [
 gulp.task('sss', function() {
     return gulp
         .src(config.src.sass + '/[^_]*.sss')
+        // waiting for @ai to fix bug with SugarSS parser and sourcemaps
         // .pipe(sourcemaps.init())
         .pipe(postcss(processors,{ parser: function (source,opts) {          
             source = String(source).replace(/(^([ \t]|)+)[+][\w.\-\_]*($|[ \t]+|[(]([^)]|)+[)]([ \t]+|))$/gm,function(match){
@@ -56,7 +57,7 @@ gulp.task('sss:watch', function() {
 });
 
 
-gulp.task('lint:css', function lintCssTask() {
+gulp.task('lint:css', function() {
   const gulpStylelint = require('gulp-stylelint');
 
   return gulp

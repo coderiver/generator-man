@@ -8,7 +8,7 @@ var config       = require('../../config');
 
 var fontProps = {
     fontName: 'iconfont',
-    fontPath: '../fonts/',
+    fontPath: 'fonts/',
     className: 'icon'
 };
 
@@ -27,10 +27,10 @@ gulp.task('iconfont', function() {
         }))
         .on('glyphs', function(glyphs, options) {
             props = _.assign(fontProps, { glyphs: glyphs });
-            gulp.src(__dirname + '/_iconfont.scss')
+            gulp.src(__dirname + '/_iconfont.s<% if (css === 'sass') { %>c<% } %>ss')
                 .pipe(consolidate('lodash', props))
                 .pipe(gulp.dest(config.src.sassGen));
-            // generate icons preview in development mode
+            // generate icons preview
             gulp.src(__dirname + '/iconfont.html')
                 .pipe(consolidate('lodash', props))
                 .pipe(gulp.dest(config.dest.root));

@@ -79,13 +79,34 @@ module.exports = function () {
   }
 
   // iconfont task
+  // if (props.sprites.indexOf('iconfont') !== -1) {
+  //   this.bulkDirectory('gulp/tasks/iconfont', 'gulp/tasks/iconfont');
+  // }
   if (props.sprites.indexOf('iconfont') !== -1) {
-    this.bulkDirectory('gulp/tasks/iconfont', 'gulp/tasks/iconfont');
+    this.template('gulp/tasks/iconfont/iconfont.js',props);
+
+    switch (props.css) {
+      case 'sass':
+        this.bulkCopy('gulp/tasks/iconfont/_iconfont.scss','gulp/tasks/iconfont/_iconfont.scss');
+        break;
+      case 'postcss':
+        this.bulkCopy('gulp/tasks/iconfont/_iconfont.sss','gulp/tasks/iconfont/_iconfont.sss');
+        break;
+    }
   }
 
   // svg sprites task
   if (props.sprites.indexOf('svg') !== -1) {
-    this.bulkDirectory('gulp/tasks/sprite-svg', 'gulp/tasks/sprite-svg');
+    this.template('gulp/tasks/sprite-svg/sprite-svg.js',props);
+
+    switch (props.css) {
+      case 'sass':
+        this.bulkCopy('gulp/tasks/sprite-svg/_sprite-svg.scss','gulp/tasks/sprite-svg/_sprite-svg.scss');
+        break;
+      case 'postcss':
+        this.bulkCopy('gulp/tasks/sprite-svg/_sprite-svg.sss','gulp/tasks/sprite-svg/_sprite-svg.sss');
+        break;
+    }
   }
 
   // png sprites task

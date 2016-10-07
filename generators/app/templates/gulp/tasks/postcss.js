@@ -39,8 +39,7 @@ var processors = [
 gulp.task('sss', function() {
     return gulp
         .src(config.src.sass + '/[^_]*.sss')
-        // waiting for @ai to fix bug with SugarSS parser and sourcemaps
-        // .pipe(sourcemaps.init())
+        .pipe(sourcemaps.init())
         .pipe(postcss(processors,{ parser: function (source,opts) {          
             source = String(source).replace(/(^([ \t]|)+)[+][\w.\-\_]*($|[ \t]+|[(]([^)]|)+[)]([ \t]+|))$/gm,function(match){
               return match.replace(/[()]/g,' ').replace(/(^([ \t]|)+)[+]/g,'$1@mixin ');
@@ -48,7 +47,7 @@ gulp.task('sss', function() {
             return sugarss.parse(source,opts);
         } }))
         .pipe(rename({ extname: '.css' }))
-        // .pipe(sourcemaps.write('./'))
+        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(config.dest.css));
 });
 

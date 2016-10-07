@@ -10,16 +10,17 @@
   "devDependencies": {
     "autoprefixer": "^6.3.3",
     "browser-sync": "^2.10.0",
-    "css-mqpacker": "^4.0.0",
+    "css-mqpacker": "^5.0.1",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-filter": "^4.0.0",
     "gulp-if": "^2.0.0",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
-    "gulp-postcss": "^6.1.1",<% if (css === 'postcss') { %>
-    "gulp-sass-to-postcss-mixins": "0.0.2",
-    "postcss": "^5.0.10",
+    "gulp-postcss": "^6.2.0",,<% if (css === 'postcss') { %>
+    "gulp-sass-to-postcss-mixins": "0.0.3",
+    "postcss": "^5.2.4",
+    "sugarss": "^0.2.0",
     "stylelint-selector-bem-pattern": "^1.0.0",
     "lost": "^7.1.0",
     "postcss-advanced-variables": "^1.2.2",
@@ -29,12 +30,12 @@
     "postcss-conditionals": "^2.0.2",
     "postcss-easy-import": "^1.0.1",
     "postcss-extend": "^1.0.5",
-    "postcss-hexrgba": "^0.2.0",
+    "postcss-hexrgba": "^0.2.1",
     "postcss-media-minmax": "^2.1.2",
-    "postcss-mixins": "^5.2.0",
+    "postcss-mixins": "^5.3.0",
     "postcss-nested": "^1.0.0",
     "postcss-property-lookup": "^1.2.1",
-    "gulp-stylelint": "^3.1.0",<% } %>
+    "gulp-stylelint": "^3.3.0",<% } %>
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",

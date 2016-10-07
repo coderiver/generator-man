@@ -26,6 +26,7 @@ var processors = [
     require('postcss-atroot'),
     require('postcss-property-lookup'),
     require('postcss-extend'),
+    require('lost'),
     autoprefixer({
         browsers: ['last 4 versions'],
         cascade: false

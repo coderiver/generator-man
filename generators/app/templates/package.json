@@ -20,6 +20,8 @@
     "gulp-postcss": "^6.1.1",<% if (css === 'postcss') { %>
     "gulp-sass-to-postcss-mixins": "0.0.2",
     "postcss": "^5.0.10",
+    "stylelint-selector-bem-pattern": "^1.0.0",
+    "lost": "^7.1.0",
     "postcss-advanced-variables": "^1.2.2",
     "postcss-assets": "^4.1.0",
     "postcss-atroot": "^0.1.3",

@@ -17,7 +17,7 @@
     "gulp-if": "^2.0.0",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
-    "gulp-postcss": "^6.2.0",,<% if (css === 'postcss') { %>
+    "gulp-postcss": "^6.2.0",<% if (css === 'postcss') { %>
     "gulp-sass-to-postcss-mixins": "0.0.3",
     "postcss": "^5.2.4",
     "sugarss": "^0.2.0",

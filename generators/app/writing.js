@@ -146,7 +146,11 @@ module.exports = function () {
   
 
   // copy directories
-  this.directory('src/js', 'src/js');
+  if (props.bundler === 'webpack') {
+    this.copy('src/js/app.js', 'src/js/app.js');
+  } else {
+    this.directory('src/js', 'src/js');
+  }
   
   
 

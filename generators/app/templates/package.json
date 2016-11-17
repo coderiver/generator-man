@@ -2,7 +2,7 @@
   "name": "<%= _.kebabCase(name) %>",
   "version": "0.1.0",
   "scripts": {
-    "ghpages": "git subtree push --prefix dist origin gh-pages",
+    "ghpages": "git subtree push --prefix build origin gh-pages",
     "build": "gulp build --production",
     "start": "gulp"
   },

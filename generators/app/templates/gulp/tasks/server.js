@@ -10,7 +10,10 @@ gulp.task('server', function() {
     server.init({
         server: {
             baseDir: !config.production ? [config.dest.root, config.src.root] : config.dest.root,
-            directory: false
+            directory: false,
+            serveStaticOptions: {
+                extensions: ['html']
+            }
         },
         files: [
             config.dest.html + '/*.html',

@@ -131,11 +131,11 @@ module.exports = function () {
   if (props.bundler === 'webpack') {
     this.bulkCopy('gulp/tasks/webpack.js', 'gulp/tasks/webpack.js');
     this.copy('webpack.config.js');
-    this.copy('babelrc', '.babelrc');
   }
   else{
     this.bulkCopy('gulp/tasks/js.js', 'gulp/tasks/js.js');
   }
+  this.copy('babelrc', '.babelrc');
 
   if (props.css === 'sass') {
     this.directory('src/sass', 'src/sass');

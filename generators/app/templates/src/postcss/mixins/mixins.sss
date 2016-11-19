@@ -33,6 +33,10 @@
 	left: 50%
 	transform: translate(-50%,-50%)
 
+@define-mixin hover
+	.no-touch &:hover
+		@mixin-content
+
 // bulletproof vertical-align
 @define-mixin vertical
 	text-align: center

@@ -28,7 +28,7 @@ function renderHtml(onlyChanged) {
         .pipe(prettify({
             indent_size: 2,
             wrap_attributes: 'auto', // 'force'
-            preserve_newlines: true,
+            preserve_newlines: false,
             // unformatted: [],
             end_with_newline: true
         }))

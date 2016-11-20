@@ -123,17 +123,24 @@ module.exports = function () {
     }
   }
 
-  // js bundler task
-  if (props.bundler === 'browserify') {
-    this.copy('gulp/tasks/browserify.js');
+
+
+  // copy directories
+  if (props.bundler === 'webpack') {
+    this.copy('src/js/app-webpack.js', 'src/js/app.js');
+  } else {
+    this.bulkCopy('src/js/app.js', 'src/js/app.js');
+    this.directory('src/js/lib/', 'src/js/lib/');
   }
 
   if (props.bundler === 'webpack') {
     this.bulkCopy('gulp/tasks/webpack.js', 'gulp/tasks/webpack.js');
+    this.bulkCopy('src/js/lib/sayHello-webpack.js', 'src/js/lib/sayHello.js');
     this.copy('webpack.config.js');
   }
   else{
     this.bulkCopy('gulp/tasks/js.js', 'gulp/tasks/js.js');
+    this.bulkCopy('src/js/lib/sayHello.js', 'src/js/lib/sayHello.js');
   }
   this.copy('babelrc', '.babelrc');
 
@@ -145,12 +152,7 @@ module.exports = function () {
 
   
 
-  // copy directories
-  if (props.bundler === 'webpack') {
-    this.copy('src/js/app.js', 'src/js/app.js');
-  } else {
-    this.directory('src/js', 'src/js');
-  }
+
   
   
 

@@ -69,6 +69,7 @@
     <% if (bundler === 'webpack') { %>
     "webpack": "^1.12.12",
     "babel-loader": "^6.2.1",
+    "babel-core": "^6.18.2",
     "babel-runtime": "^5.0.0",<% } %>
     "lodash": "^4.3.0"
   }

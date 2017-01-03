@@ -1,0 +1,8 @@
+@define-mixin s $name
+{{#items}}
+	@if $name == '{{name}}'
+		background-image: url('{{{escaped_image}}}')
+		width: {{px.width}}
+		height: {{px.height}}
+		background-position: {{px.offset_x}} {{px.offset_y}}
+{{/items}}

@@ -1,0 +1,170 @@
+@define-mixin size $size
+	width: $size
+	height: $size
+@define-mixin r $width
+	@media only screen and (max-width: $(width)px)
+		@mixin-content
+
+@define-mixin rmin $width
+	@media only screen and (min-width: $(width)px)
+		@mixin-content
+
+// height
+@define-mixin rh $height
+	@media only screen and (max-height: $(height)px)
+		@mixin-content
+
+@define-mixin rhmin $height
+	@media only screen and (min-height: $(height)px)
+		@mixin-content
+
+@define-mixin retina
+	@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)
+		@mixin-content
+
+@define-mixin text-overflow
+	overflow: hidden
+	text-overflow: ellipsis
+	white-space: nowrap
+
+@define-mixin vcenter
+	position: absolute
+	top: 50%
+	left: 50%
+	transform: translate(-50%,-50%)
+
+@define-mixin hover
+	.no-touch &:hover
+		@mixin-content
+
+// bulletproof vertical-align
+@define-mixin vertical
+	text-align: center
+	font-size: 0
+	&:before
+		content: ""
+		display: inline-block
+		vertical-align: middle
+		width: 0
+		height: 100%
+		
+@define-mixin justify
+	text-align: justify
+	line-height: 0
+	font-size: 0
+	text-justify: newspaper
+	zoom: 1
+	text-align-last: justify
+	&:after
+		content: ""
+		display: inline-block
+		width: 100%
+		height: 0px
+		visibility: hidden
+		overflow: hidden
+		
+// fast font-family
+@define-mixin font $alias, $name
+	@font-face
+		font-family: $alias
+		src: url("fonts/$(name).woff2") format("woff2"), url("fonts/$(name).woff") format("woff")
+		font-weight: normal
+		font-style: normal
+		
+@define-mixin g $color1, $color2
+	background-color: $(color1)
+	background-image: linear-gradient($(color1), $(color2))
+	
+@define-mixin clr
+	&:after
+		content: " "
+		display: table
+		clear: both
+
+@define-mixin hide-text
+	font: 0/0 a
+	text-shadow: none
+	color: transparent
+
+@define-mixin gh $color1, $color2
+	background-color: $color1
+	background-image: linear-gradient(to right, $color1, $color2)
+
+@define-mixin coverdiv
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+@define-mixin pseudo
+	position: relative
+	&:before,&:after
+		content: ' '
+		position: absolute
+		top: 0
+		left: 0
+		
+@define-mixin box
+	box-sizing: border-box
+	
+@define-mixin cover
+	background-repeat: no-repeat
+	background-size: cover
+	background-position: 50% 50%
+	
+@define-mixin blur $var
+	filter: blur($var)
+
+@define-mixin gray
+	filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale")
+	// Firefox 10+
+	filter: gray
+	// IE6-9
+	-webkit-filter: grayscale(100%)
+	// Chrome 19+ & Safari 6+
+	filter: progid:DXImageTransform.Microsoft.BasicImage(grayScale=1)
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(grayScale=1)"
+
+@define-mixin gray-half
+	filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='saturate' values='0.5'/></filter></svg>#grayscale")
+	// Firefox 10+
+	filter: gray alpha(opacity = 50)
+	// IE6-9
+	-webkit-filter: grayscale(50%)
+	// Chrome 19+ & Safari 6+
+
+@define-mixin gray-zero
+	filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0'/></filter></svg>#grayscale")
+	-webkit-filter: grayscale(0%)
+
+@define-mixin unselectable
+	-webkit-touch-callout: none
+	user-select: none
+
+@define-mixin nosel
+	@mixin unselectable
+
+@define-mixin prevent-text
+	word-break: break-all
+	word-break: break-word
+	hyphens: auto
+
+@define-mixin gpu
+	transform: translate3d(0, 0, 0)
+
+@define-mixin rotate $var
+	transform: rotate($(var)deg)
+
+@define-mixin blur $var
+	-webkit-filter: blur($var)
+	filter: blur($var)
+	
+@define-mixin scale $var
+	transform: scale($var)
+
+@define-mixin counter $var, $sep
+	counter-reset: list + $var
+	& > li
+		&:before
+			content: counter(list + $var) $sep
+			counter-increment: list + $var

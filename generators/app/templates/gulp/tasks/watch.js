@@ -13,6 +13,7 @@ gulp.task('watch',
     'svgo:watch',<% } %><% if (bundler === 'browserify') { %>
     'browserify:watch',<% } %><% if (bundler === 'webpack') { %>
     'webpack:watch',<% } %><% if (bundler === 'manually') { %>
-    'js:watch',<% } %>
-    'sass:watch'
+    'js:watch',<% } %><% if (css === 'sass') { %>
+    'sass:watch'<% } %><% if (css === 'postcss') { %>
+    'sss:watch'<% } %>
 ]);

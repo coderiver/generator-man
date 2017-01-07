@@ -26,7 +26,7 @@ module.exports = [
       },
       {
         name: 'No templates, just pure html',
-        value: false
+        value: 'html'
       }
     ],
     default: 0

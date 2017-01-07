@@ -166,5 +166,8 @@ module.exports = function () {
     case 'jade':
       this.directory('src/templates-jade', 'src/templates');
       break;
+    case 'html':
+      this.directory('src/templates-html', 'src');
+      break;
   }
 };

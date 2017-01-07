@@ -70,6 +70,7 @@
     "webpack": "^1.12.12",
     "babel-loader": "^6.2.1",
     "babel-core": "^6.18.2",
+    "webpack-bundle-analyzer": "^1.5.3",
     "babel-runtime": "^5.0.0",<% } %>
     "lodash": "^4.3.0"
   }

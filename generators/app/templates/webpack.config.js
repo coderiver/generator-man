@@ -2,6 +2,7 @@ var webpack    = require('webpack');
 var path       = require('path');
 var util       = require('gulp-util');
 var config     = require('./gulp/config');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 function createConfig(env) {
     var isProduction, webpackConfig;
@@ -32,7 +33,19 @@ function createConfig(env) {
             //     filename: '[name].js',
             //     minChunks: Infinity
             // }),
-            new webpack.NoErrorsPlugin()
+            new webpack.ProvidePlugin({
+                $: "jquery",
+                jQuery: "jquery",
+                'window.jQuery': "jquery"
+            }),
+            new webpack.NoErrorsPlugin(),
+
+            new BundleAnalyzerPlugin( {
+                analyzerMode: 'static',
+                analyzerPort: 4000,
+                openAnalyzer: false
+                }
+            )
         ],
         resolve: {
             extensions: ['', '.js']

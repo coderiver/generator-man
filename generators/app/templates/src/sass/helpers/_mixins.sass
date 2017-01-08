@@ -16,6 +16,14 @@
   @media only screen and (min-height: $height + "px")
     @content
 
+
+@mixin css-lock($min-size: 1, $max-size: 1.4, $min-width: 20, $max-width: 100, $property: font-size, $unit: px)
+  #{$property}: calc(#{$min-size}#{$unit} + (#{$max-size} - #{$min-size}) * ((100vw - #{$min-width}#{$unit}) / (#{$max-width} - #{$min-width})))
+  @media (max-width: #{$min-width}#{$unit})
+    #{$property}: #{$min-size}#{$unit}
+  @media (min-width: #{$max-width}#{$unit})
+    #{$property}: #{$max-size}#{$unit}
+    
 =fs($sizeValue: 16)
   font-size: $sizeValue + px
   font-size: $sizeValue / 10 + rem

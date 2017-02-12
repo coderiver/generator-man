@@ -3,6 +3,7 @@ var path       = require('path');
 var util       = require('gulp-util');
 var config     = require('./gulp/config');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var PrettierPlugin = require('prettier-webpack-plugin');
 
 function createConfig(env) {
     var isProduction, webpackConfig;
@@ -33,6 +34,10 @@ function createConfig(env) {
             //     filename: '[name].js',
             //     minChunks: Infinity
             // }),
+            new PrettierPlugin({
+                printWidth: 80,
+                tabWidth: 4
+            }),
             new webpack.ProvidePlugin({
                 $: "jquery",
                 jQuery: "jquery",

@@ -15,6 +15,18 @@ indent_size = 4
 [*.scss]
 indent_size = 4
 
+[*.sass]
+indent_size = tab
+indent_style = tab
+
+[*.sss]
+indent_size = tab
+indent_style = tab
+
+[*.pug]
+indent_size = tab
+indent_style = tab
+
 [{bower.json,package.json,.travis.yml}]
 indent_style = space
 indent_size = 2

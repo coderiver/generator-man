@@ -40,6 +40,7 @@ module.exports = function () {
   this.copy('gulp/tasks/clean.js');
   this.copy('gulp/tasks/server.js');
   this.bulkDirectory('gulp/tasks/index-page', 'gulp/tasks/index-page');
+  this.bulkDirectory('gulp/tasks/index', 'gulp/tasks/index');
 
   this.sprites = props.sprites; // or in /templates/src/sass/app.sass use options.sprites
   // compile templates tasks
@@ -124,7 +125,8 @@ module.exports = function () {
   }
 
 
-
+  this.copy('src/index.yaml', 'src/index.yaml');
+  
   // copy directories
   if (props.bundler === 'webpack') {
     this.copy('src/js/app-webpack.js', 'src/js/app.js');

@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Page List</title>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700|Playfair+Display+SC:400,700&amp;subset=cyrillic" rel="stylesheet">
+  <style>
+    *{margin:0;padding: 0;}
+    body {
+      color: #333;
+      margin: 0;
+      padding: 0 40px;
+      font-size: 20px;
+      line-height: 1.6;
+      font-family: 'Playfair Display SC', serif;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+      text-shadow: -1px -1px white, -1px 1px white, 1px -1px white, 1px 1px white;
+      background-size: 1px 1em;
+      box-shadow: inset 0 -0.175em white, inset 0 -0.2em currentColor;
+    }
+    a:hover {
+      color: #f60;
+      box-shadow: none
+    }
+    section{
+      margin-right: 55%;
+      padding: 30px 0;
+    }
+
+    .preview{
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      right: 50px;
+      top: 50%;
+      transform: translateY(-50%) translateX(25%) scale(0.5);
+      /*border: 1px solid red;*/
+    }
+    .preview:after{
+      content: "";
+      clear: both;
+      height: 1px;
+    }
+    
+
+
+    iframe{
+      width: 100%;
+      height: 100%;
+      /*border: 2px solid #ccc;*/
+      margin: 0 auto;
+      float: right;
+      position: absolute;
+      right: 0;
+      box-shadow: 0 0 20px rgba(0,0,0,.6);
+    }
+    footer{
+      width: 100%;
+    }
+    .is-mobile iframe,.is-mobile .preview footer{
+      width: 320px;
+      /*left: 50%;
+      margin-left: -160px;*/
+    }
+    .is-ipad iframe,.is-ipad .preview footer{
+      width: 900px;
+      /*left: 50%;
+      margin-left: -450px;*/
+    }
+    .is-desktop iframe,.is-desktop .preview footer{
+      width: 1200px;
+    }
+    .is-wide iframe,.is-wide .preview footer{
+      width: 1600px;
+      /*transform: scale(calc(1600/ 100vw))*/
+    }
+    .preview__types{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100px;
+      right: -100px;
+    }
+    .preview__types a,
+    .preview__types button{
+      height: 25vh;
+      display: block;
+      background: #000;
+      color: #fff;
+      line-height: 25vh;
+      text-align: center;
+      text-decoration: none;
+      box-shadow:none;
+      text-shadow: none;
+      width: 100%;
+      font-size: 40px;
+    }
+    .preview__types a:hover,.preview__types a.is-active,
+    .preview__types button:hover,.preview__types button.is-active{
+      background: #fff;
+      color: #000;
+    }
+    .preview__types a svg{
+      fill:#fff;
+      color: #fff;
+      width: 50px;
+      height: 50px;
+    }
+    .preview footer{
+      position: absolute;
+      bottom: -50px;
+      text-align: center;
+      right: 0;
+      padding: 0;
+    }
+
+    .pagelist{
+      counter-reset: list1;
+      list-style-type: none;
+    }
+    .pagelist li{
+      position: relative;
+      margin-left: 50px;
+      margin-bottom: 20px;
+    }
+    .pagelist li.is-notready{
+      cursor: default !important;
+      pointer-events: none;
+    }
+    .pagelist li.is-notready .pagelist__preview{
+      display: none;
+    }
+    .pagelist li.is-notready .pagelist__title a,
+    .pagelist li.is-notready .pagelist__title a:hover{
+      box-shadow: none;
+      color: #ccc;
+      cursor: default;
+      pointer-events: none;
+    }
+    .pagelist li:before{
+        content: counter(list1);
+        counter-increment: list1;
+        font-family: 'Playfair Display SC', serif;
+        position: absolute;
+        color: #ccc;
+        z-index: -1;
+        font-size: 60px;
+        right: 100%;
+        top: 0;
+        line-height: 1;
+        margin-right: 20px;
+    }
+    .pagelist__ready{
+      height: 10px;
+      border: 1px solid #ccc;
+      padding: 1px;
+      max-width: 300px;
+    }
+    .pagelist__ready i{
+      height: 10px;
+      background: #f60;
+      display: block;
+    }
+    .pagelist__preview{
+      display: inline-block;
+      box-shadow: none;
+      padding: 5px 20px;
+      border: 1px solid #000;
+      font-size: 13px;
+      margin-top: 10px;
+      text-transform: uppercase;
+      text-shadow: none;
+    }
+    .pagelist__preview:hover{
+      border-color: #f60;
+      color: #fff;
+      background: #f60;
+    }
+    .pagelist__title{
+      font-size: 30px;
+    }
+
+
+
+    header{
+      overflow: hidden;
+      border-bottom: 1px solid #000;
+      line-height: 1;
+      /*height: 100px;*/
+      opacity: .4;
+    }
+    header h1{
+      font-size: 60px;
+      margin: 0;
+      padding: 0;
+    }
+    header a{
+      box-shadow: none
+    }
+    footer{
+      font-size: 15px;
+      text-align: center;
+      padding: 20px 50px;
+      text-align: left;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="#"><%= pages.ProjectTitle %></a></h1>
+  </header>
+  <section>
+    <ol class="pagelist"><% _.each(pages.PageList, function(page) { %>
+      <li <% if(!page.ready) { %> class="is-notready" <% } %>>
+        <h2 class="pagelist__title"><a target="_blank" href="<%= page.file %>"><%= _.split(page.file, '.', 1) %></a></h2>
+        <% if(page.ready) { %>
+        <div class="pagelist__ready">
+          <i style="width:<%= page.ready %>%"></i>
+        </div>
+        <% } %>
+        <a href="<%= page.file %>" class="pagelist__preview">Preview Page</a>
+      </li>
+    <% }) %></ol>
+  </section>
+
+  <aside class="preview">
+    <nav class="preview__types">
+      <button data-mode="mobile">320</button>
+      <button data-mode="ipad">900</button>
+      <button data-mode="desktop">1200</button>
+      <button data-mode="wide">1600</button>
+    </nav>
+    <iframe id="preview"  width="468" height="60" src="index.html"  frameborder="0"></iframe>
+    <footer>
+      <p>&copy; coded with ❤️ at Coderiver</p>
+    </footer>
+  </aside>
+  <script>
+    var navs = document.querySelectorAll('.preview__types button');
+    var body = document.querySelectorAll('body')[0];
+    var previewButtons = document.querySelectorAll('.pagelist__preview');
+    var iframe = document.getElementById('preview');
+
+    [].forEach.call(previewButtons, function(button) {
+      button.addEventListener('click', function(event) {
+        event.preventDefault();
+        var el = event.currentTarget;
+        iframe.src = el.href;
+      }, false);
+    });
+
+    
+
+    [].forEach.call(navs, function(nav) {
+      nav.addEventListener('click', function(event) {
+          event.preventDefault();
+          var mode = event.currentTarget.dataset.mode;
+
+          body.classList.remove('is-wide');
+          body.classList.remove('is-mobile');
+          body.classList.remove('is-ipad');
+          body.classList.remove('is-desktop');
+
+          body.classList.add('is-' + mode);
+
+
+          [].forEach.call(navs, function(nav) {
+            nav.classList.remove('is-active');
+          })
+          event.currentTarget.classList.add('is-active');
+      }, false);
+    });
+  </script>
+  
+</body>
+</html>

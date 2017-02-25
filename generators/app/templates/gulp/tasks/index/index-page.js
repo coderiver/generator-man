@@ -6,7 +6,6 @@ require('require-yaml');
 gulp.task('list-pages', function() {
 	delete require.cache[require.resolve('../../../' + config.src.pagelist)]
     var pages = require('../../../' + config.src.pagelist);
-    console.log(pages);
     return gulp
         .src(__dirname + '/list.html')
         .pipe(consolidate('lodash', {

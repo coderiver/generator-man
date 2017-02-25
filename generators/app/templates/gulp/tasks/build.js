@@ -18,6 +18,7 @@ function build(cb) {
         'webpack',<% } %><% if (bundler === 'manually') { %>
         'js',<% } %>
         'copy',
+        'list-pages',
         cb
     );
 }

@@ -80,6 +80,7 @@
     "webpack-bundle-analyzer": "^1.5.3",
     "prettier-webpack-plugin": "^0.0.2",
     "babel-runtime": "^5.0.0",<% } %>
+    "require-yaml": "^0.0.1",
     "lodash": "^4.3.0"
   }
 }

@@ -11,7 +11,8 @@ gulp.task('watch',
     'sprite:svg:watch',<% } %><% if (sprites.indexOf('png') !== -1) { %>
     'sprite:png:watch',<% } %><% if (svgo) { %>
     'svgo:watch',<% } %><% if (bundler === 'browserify') { %>
-    'browserify:watch',<% } %><% if (bundler === 'webpack') { %>
+    'browserify:watch',<% } %>
+    'list-pages:watch',<% if (bundler === 'webpack') { %>
     'webpack:watch',<% } %><% if (bundler === 'manually') { %>
     'js:watch',<% } %><% if (css === 'sass') { %>
     'sass:watch'<% } %><% if (css === 'postcss') { %>

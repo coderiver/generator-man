@@ -125,7 +125,7 @@ module.exports = function () {
   }
 
 
-  this.copy('src/index.yaml', 'src/index.yaml');
+  this.template('src/index.yaml', props);
   
   // copy directories
   if (props.bundler === 'webpack') {

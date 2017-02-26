@@ -34,10 +34,11 @@ function createConfig(env) {
             //     filename: '[name].js',
             //     minChunks: Infinity
             // }),
-            new PrettierPlugin({
-                printWidth: 80,
-                tabWidth: 4
-            }),
+            // uncomment in case of emergency code formatter need
+            // new PrettierPlugin({
+            //     printWidth: 80,
+            //     tabWidth: 4
+            // }),
             new webpack.ProvidePlugin({
                 $: "jquery",
                 jQuery: "jquery",

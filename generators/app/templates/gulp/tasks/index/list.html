@@ -21,6 +21,9 @@
         font-weight: normal;
         font-style: normal;
     }
+    :root{
+    	--main-color: #f9e900;
+    }
     body {
       color: #333;
       margin: 0;
@@ -132,6 +135,7 @@
       height: 24px;
       border-radius: 4px;
       background: #f9e900;
+      background: var(--main-color);
       display: inline-block;
       position: relative;
       vertical-align: middle;
@@ -161,6 +165,7 @@
       height: 4px;
       display: block;
       background: #f9e900;
+      background: var(--main-color);
     }
 
 
@@ -179,6 +184,7 @@
     }
     header h1{
       background: #f9e900;
+      background: var(--main-color);
       height: 91px;
       position: relative;
       width: 242px;
@@ -193,6 +199,7 @@
       bottom: 0;
       content: "";
       background: #f9e900;
+      background: var(--main-color);
       transform: rotate(38deg);
       transform-origin: 100% 100%;
     }
@@ -420,7 +427,7 @@
       <button data-mode="ipad" data-width="900">
         <svg class="icon icon-tablet"><use xlink:href="#icon-tablet"></use></svg>
         <strong>Tablet</strong>
-        <span>768px</span></button>
+        <span>900px</span></button>
       <button data-mode="desktop" data-width="1024">
         <svg class="icon icon-desktop"><use xlink:href="#icon-desktop"></use></svg>
         <strong>Desktop</strong>
@@ -469,6 +476,32 @@
     var previewButtons = document.querySelectorAll('.pagelist__title');
     var iframe = document.getElementById('preview');
     var previewWrapper = document.getElementById('preview-wrapper');
+    
+    // colors
+    var colors_new = [];
+    var colors = ['#f9e900','#ddd','#afd702','#add8e6','#f03a96'];
+    var len = colors.length - 1;
+    var step = 1;
+    var offset = 1;
+
+    if(localStorage.getItem('main-color')){
+    	document.documentElement.style.setProperty(`--main-color`, localStorage.getItem('main-color'));
+    }
+
+    body.addEventListener('dblclick', function(event) {
+    	
+
+    	
+    	colors = colors.concat(colors.splice(0,1));
+
+    	document.documentElement.style.setProperty(`--main-color`, colors[0]);
+
+    	localStorage.setItem('main-color', colors[0]);
+    	
+    	// color picker
+
+    });
+    // end colors
 
     function removeActive(){
       [].forEach.call(previewButtons, function(button) {
@@ -526,7 +559,7 @@
           
           return;
         }
-
+        if(scaleH>1){scaleH = 1;}
         iframe.style.transform = 'scale('+ scaleH +')';
 
         iframe.style.height =  pheight/scaleH + 'px';

@@ -476,30 +476,17 @@
     var previewButtons = document.querySelectorAll('.pagelist__title');
     var iframe = document.getElementById('preview');
     var previewWrapper = document.getElementById('preview-wrapper');
-    
     // colors
-    var colors_new = [];
     var colors = ['#f9e900','#ddd','#afd702','#add8e6','#f03a96'];
-    var len = colors.length - 1;
-    var step = 1;
-    var offset = 1;
 
     if(localStorage.getItem('main-color')){
     	document.documentElement.style.setProperty(`--main-color`, localStorage.getItem('main-color'));
     }
 
     body.addEventListener('dblclick', function(event) {
-    	
-
-    	
     	colors = colors.concat(colors.splice(0,1));
-
     	document.documentElement.style.setProperty(`--main-color`, colors[0]);
-
     	localStorage.setItem('main-color', colors[0]);
-    	
-    	// color picker
-
     });
     // end colors
 
@@ -508,6 +495,32 @@
         button.classList.remove('is-active');
       });
     }
+
+    function getScrollbarWidth() {
+        var outer = document.createElement("div");
+        outer.style.visibility = "hidden";
+        outer.style.width = "100px";
+        outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
+
+        document.body.appendChild(outer);
+
+        var widthNoScroll = outer.offsetWidth;
+        // force scrollbars
+        outer.style.overflow = "scroll";
+
+        // add innerdiv
+        var inner = document.createElement("div");
+        inner.style.width = "100%";
+        outer.appendChild(inner);        
+
+        var widthWithScroll = inner.offsetWidth;
+
+        // remove divs
+        outer.parentNode.removeChild(outer);
+
+        return widthNoScroll - widthWithScroll;
+    }
+    var  scrollbarwidth = getScrollbarWidth();
 
     [].forEach.call(previewButtons, function(button) {
       button.addEventListener('click', function(event) {
@@ -527,7 +540,7 @@
       nav.addEventListener('click', function(event) {
           event.preventDefault();
           mode = event.currentTarget.dataset.mode;
-          iframe.style.width = event.currentTarget.getAttribute('data-width') + 'px';
+          iframe.style.width = parseInt(event.currentTarget.getAttribute('data-width')) + parseInt(scrollbarwidth) + 'px';
 
           body.setAttribute('data-mode','is-' + mode);
 

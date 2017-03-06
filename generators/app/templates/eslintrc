@@ -1,5 +1,5 @@
 {
-  "extends": "eslint:recommended",
+  "extends": "airbnb",
   "env": {
     "browser": true,
     "es6": true,
@@ -10,11 +10,12 @@
     "sourceType": "module"
   },
   "rules": {
-    "no-console": 1,
+    "no-console": 0,
     "no-undef": 1,
     "no-unused-vars": 1,
     "eqeqeq": [2, "smart"],
     "no-floating-decimal": 2,
+    "no-use-before-define": ["error", { "functions": false, "classes": true }],
     "no-multi-spaces": [2, {
       "exceptions": {
         "ImportDeclaration": true,
@@ -23,11 +24,10 @@
     }],
     "no-multi-str": 2,
     "camelcase": 1,
-    "eol-last": 1,
-    "indent": [2, 4, {
-      "SwitchCase": 1,
-      "VariableDeclarator": 1
-    }],
+    "comma-dangle": ["error", "never"],
+    "object-shorthand": ["error", "always", { "ignoreConstructors": true }],
+    "eol-last": 0,
+    "indent": ["error", 2],
     "quotes": [2, "single", "avoid-escape"],
     "semi": 2,
     "space-before-blocks": 2,

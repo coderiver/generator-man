@@ -1,4 +1,4 @@
 ProjectTitle: <%= _.kebabCase(name) %>
 
 PageList:
-- file: index.html
+- file: page.html

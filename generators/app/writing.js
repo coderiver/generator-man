@@ -22,6 +22,7 @@ module.exports = function () {
   this.copy('gitignore', '.gitignore');
   this.copy('editorconfig', '.editorconfig');
   this.copy('eslintrc', '.eslintrc');
+  this.copy('htmlhintrc', '.htmlhintrc');
   this.copy('stylelintrc', '.stylelintrc');
   this.copy('gulpfile.js');
   this.copy('README.md');
@@ -36,6 +37,7 @@ module.exports = function () {
   this.template('gulp/tasks/build.js', props);
   
   this.template('gulp/tasks/watch.js', props);
+  this.template('gulp/tasks/lint.js', props);
   this.template('gulp/tasks/copy.js', props);
   this.copy('gulp/tasks/clean.js');
   this.copy('gulp/tasks/server.js');

@@ -4,7 +4,13 @@
   "scripts": {
     "ghpages": "git subtree push --prefix build origin gh-pages",
     "build": "gulp build --production",
-    "start": "gulp"
+    "start": "gulp",
+    "precommit": "gulp lint",
+    "lint-staged": "lint-staged",
+    "htmlhint": "htmlhint"
+  },
+  "lint-staged": {
+    "*.html": "htmlhint"
   },
   "authors": "Coderiver <html@coderiver.com.ua>",
   "devDependencies": {
@@ -13,6 +19,7 @@
     "css-mqpacker": "^5.0.1",
     "jquery": "^3.1.1",
     "del": "^2.2.0",
+    "husky": "^0.13.2",
     "eslint": "^3.15.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-config-airbnb-base": "^9.0.0",
@@ -24,6 +31,7 @@
     "gulp-if": "^2.0.0",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
+    "gulp-htmlhint": "^0.3.1",
     "gulp-postcss": "^6.2.0",<% if (css === 'postcss') { %>
     "gulp-sass-to-postcss-mixins": "0.0.3",
     "postcss": "^5.2.4",

@@ -7,7 +7,7 @@ gulp.task('list-pages', function() {
 	delete require.cache[require.resolve('../../../' + config.src.pagelist)]
     var pages = require('../../../' + config.src.pagelist);
     return gulp
-        .src(__dirname + '/list.html')
+        .src(__dirname + '/index.html')
         .pipe(consolidate('lodash', {
             pages: pages
         }))

@@ -23,6 +23,7 @@ module.exports = function () {
   this.copy('editorconfig', '.editorconfig');
   this.copy('eslintrc', '.eslintrc');
   this.copy('htmlhintrc', '.htmlhintrc');
+  this.copy('sass-lint.yml', '.sass-lint.yml');
   this.copy('stylelintrc', '.stylelintrc');
   this.copy('gulpfile.js');
   this.copy('README.md');

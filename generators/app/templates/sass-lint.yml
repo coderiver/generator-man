@@ -1,0 +1,27 @@
+options:
+  merge-default-rules: false
+  max-warnings: 0
+# File Options
+files:
+  include: 'sass/**/*.s+(a|c)ss'
+  ignore:
+    - 'src/sass/lib/**/*.*'
+    - 'src/sass/helpers/**/*.*'
+    - 'src/sass/generated/**/*.*'
+# Rule Configuration
+rules:
+  force-pseudo-nesting: 2
+  no-important: 2
+  no-duplicate-properties: 2
+  no-url-protocols: 2
+  no-extends: 2
+  no-empty-rulesets: 2
+  no-misspelled-properties: 2
+  no-url-domains: 2
+  no-transition-all: 2
+  nesting-depth:
+    - 2
+    - max-depth: 4
+  indentation:
+    - 1
+    - size: tab

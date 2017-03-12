@@ -92,6 +92,12 @@ module.exports = [
   },
   {
     type: 'confirm',
+    name: 'prettify',
+    message: 'Use Prettify for JS?',
+    default: true
+  },
+  {
+    type: 'confirm',
     name: 'install',
     message: 'Install dependencies right now?',
     default: false

@@ -14,7 +14,7 @@ rules:
   no-important: 2
   no-duplicate-properties: 2
   no-url-protocols: 2
-  no-extends: 2
+  #no-extends: 2
   no-empty-rulesets: 2
   no-misspelled-properties: 2
   no-url-domains: 2

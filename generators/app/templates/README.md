@@ -35,7 +35,7 @@ Task name          | Description
 `sprite:png`       | create png sprites
 `server`           | run dev-server powered by [BrowserSync](https://www.browsersync.io/)
 `clean`            | remove `./dist` folder
-`index-page`       | create index file with links to all project pages
+`list-pages`       | create index file with links to all project pages
 
 _This is a full list of tasks, that we use in our projects, but not all of them should be available in current project. For example, we only use one template engine out of these three [`jade`, `nunjucks`, `swig`]. All available tasks are placed in a folder `./gulp/tasks` as separate *.js files. Usually, file name = task name._
 
@@ -51,6 +51,7 @@ We have several useful flags.
 ##Other
 You can also use [npm scripts](https://docs.npmjs.com/misc/scripts):
 
-* `npm run ghpages` to push only `./dist` folder to **gh-pages** branch on github (very useful for previews).
 * `npm run start` - same as `gulp default`.
 * `npm run build` - same as `gulp build`.
+* `npm run ghpages` to push only `./dist` folder to **gh-pages** branch on github (very useful for previews).
+

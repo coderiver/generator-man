@@ -42,7 +42,6 @@ module.exports = function () {
   this.template('gulp/tasks/copy.js', props);
   this.copy('gulp/tasks/clean.js');
   this.copy('gulp/tasks/server.js');
-  this.bulkDirectory('gulp/tasks/index-page', 'gulp/tasks/index-page');
   this.bulkDirectory('gulp/tasks/index', 'gulp/tasks/index');
 
   this.sprites = props.sprites; // or in /templates/src/sass/app.sass use options.sprites

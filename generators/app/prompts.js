@@ -93,7 +93,7 @@ module.exports = [
   {
     type: 'confirm',
     name: 'prettify',
-    message: 'Use Prettify for JS?',
+    message: 'Use Prettier for JS?',
     default: true
   },
   {

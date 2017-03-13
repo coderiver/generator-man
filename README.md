@@ -1,5 +1,5 @@
 # generator-man [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> Coderiver scaffolding
+> Simple and quite universal frontend scaffolding. Webpack, sass, linters, PostCSS, svg sprites, png sprites, everything that simplifies your life included.
 
 ## Installation
 

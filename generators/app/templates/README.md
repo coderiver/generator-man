@@ -2,7 +2,7 @@
 
 Clone this repo and then in command line type:
 
-* `npm install` - install all dependencies
+* `npm install` or `yarn` - install all dependencies
 * `gulp` - run dev-server and let magic happen, or
 * `gulp build` - build project from sources
 
@@ -23,7 +23,7 @@ Task name          | Description
 ### Other tasks
 Task name          | Description                                                      
 :------------------|:----------------------------------
-`sass` 	         | compile .sass/.scss to .css. We also use [postcss](https://github.com/postcss/postcss) for [autoprefixer](https://github.com/postcss/autoprefixer), so feel free to include other awesome postcss [plugins](https://github.com/postcss/postcss#plugins) when needed
+`sass` 	         | compile .sass/.scss to .css. We also use [postcss](https://github.com/postcss/postcss) for [autoprefixer](https://github.com/postcss/autoprefixer) and [Lost](https://github.com/peterramsing/lost), so feel free to include other awesome postcss [plugins](https://github.com/postcss/postcss#plugins) when needed
 `webpack`          | compile .js sources into bundle file
 `copy`             | copy common files from `./src` path to `./dist` path
 `swig`             | compile [swig](http://paularmstrong.github.io/swig/)  templates

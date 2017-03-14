@@ -34,7 +34,7 @@ var config = {
         css  : destPath + '/css',
         js   : destPath + '/js',
         img  : destPath + '/img',
-        fonts: destPath + '/css/fonts',
+        fonts: destPath + '/fonts',
         lib  : destPath + '/lib'
     },
 

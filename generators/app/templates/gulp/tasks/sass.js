@@ -11,6 +11,7 @@ var processors = [
         browsers: ['last 4 versions'],
         cascade: false
     }),
+    require('lost'),
     mqpacker({
         sort: sortMediaQueries
     })

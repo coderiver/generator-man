@@ -45,7 +45,7 @@ function createConfig(env) {
                 jQuery: "jquery",
                 'window.jQuery': "jquery"
             }),
-            new webpack.NoErrorsPlugin(),
+            new webpack.NoEmitOnErrorsPlugin(),
 
             new BundleAnalyzerPlugin({
                 analyzerMode: 'static',

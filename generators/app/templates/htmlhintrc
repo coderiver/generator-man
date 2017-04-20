@@ -1,4 +1,5 @@
 {
-  "attr-lowercase": ["viewBox"],
-  "attr-value-double-quotes": false
+	"attr-lowercase": ["viewBox", "stdDeviation"],
+	"tagname-lowercase": false,
+	"attr-value-double-quotes": false
 }

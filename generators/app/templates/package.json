@@ -31,6 +31,7 @@
     "gulp-git-staged": "^0.0.1",
     "gulp-git": "^2.0.1",
     "lost": "^7.1.0",
+    "postcss-csso": "^2.0.0",
     "gulp-git-staged": "^0.0.1",<% if (prettify) { %>
     "gulp-prettier": "^1.1.0",<% } %>
     "gulp-postcss": "^6.2.0",<% if (css === 'postcss') { %>

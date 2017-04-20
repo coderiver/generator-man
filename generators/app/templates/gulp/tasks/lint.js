@@ -3,7 +3,7 @@ var config      = require('../config');
 var htmlhint    = require('gulp-htmlhint');
 var gitStaged   = require("gulp-git-staged");
 var sassLint    = require('gulp-sass-lint')
-var prettier    = require('gulp-prettier');
+<% if (prettify) { %>var prettier    = require('gulp-prettier');<% } %>
 var git         = require('gulp-git');
 
 
@@ -13,7 +13,7 @@ gulp.task('lint:js', function() {
   //   .pipe(eslint.format())
   //   .pipe(eslint.failAfterError());
 });
-
+<% if (prettify) { %>
 gulp.task('prettier', function() {
   return gulp.src(['src/js/**/*.js'])
     .pipe(gitStaged())
@@ -21,6 +21,7 @@ gulp.task('prettier', function() {
     .pipe(gulp.dest('src/js/'))
     .pipe(git.add({args: '-u'}))
 });
+<% } %>
 
 gulp.task('lint:html', function() {
   return gulp.src(config.dest.html + "/*.html")

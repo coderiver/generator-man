@@ -44,7 +44,7 @@
     "postcss-atroot": "^0.1.3",
     "postcss-color-function": "^2.0.1",
     "postcss-conditionals": "^2.0.2",
-    "postcss-easy-import": "^1.0.1",
+    "postcss-easy-import": "^2.0.0",
     "postcss-extend": "^1.0.5",
     "postcss-hexrgba": "^0.2.1",
     "postcss-media-minmax": "^2.1.2",

@@ -2,3 +2,4 @@ ProjectTitle: <%= _.kebabCase(name) %>
 
 PageList:
 - file: page.html
+  ready: 50

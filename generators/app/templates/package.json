@@ -56,7 +56,7 @@
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
-    "require-dir": "^0.3.0",
+    "require-dir": "^0.3.2",
     "gulp-consolidate": "^0.2.0",
     "gulp-include": "^2.0.3",
     "run-sequence": "^1.1.5",<% if (sprites.indexOf('iconfont') !== -1) { %>

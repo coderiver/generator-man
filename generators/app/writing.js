@@ -38,7 +38,6 @@ module.exports = function () {
   this.template('gulp/tasks/build.js', props);
   
   this.template('gulp/tasks/watch.js', props);
-  this.template('gulp/tasks/lint.js', props);
   this.template('gulp/tasks/copy.js', props);
   this.copy('gulp/tasks/clean.js');
   this.copy('gulp/tasks/server.js');

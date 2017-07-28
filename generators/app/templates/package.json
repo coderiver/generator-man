@@ -5,7 +5,16 @@
     "ghpages": "git subtree push --prefix build origin gh-pages",
     "build": "gulp build --production",
     "start": "gulp",
-    "precommit": "gulp lint"
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    <% if (prettify) { %>"src/**/*.js": [
+      "prettier --write",
+      "git add"
+    ],<% } %>
+    "src/templates/**/*.html": [
+      "htmlhint --config .htmlhintrc"
+    ]
   },
   "authors": "Coderiver <html@coderiver.com.ua>",
   "devDependencies": {
@@ -13,6 +22,7 @@
     "browser-sync": "^2.10.0",
     "css-mqpacker": "^5.0.1",
     "jquery": "^3.1.1",
+    "lint-staged": "^4.0.2",
     "del": "^2.2.0",
     "husky": "^0.13.2",
     "eslint": "^3.15.0",
@@ -26,14 +36,11 @@
     "gulp-if": "^2.0.0",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
-    "gulp-htmlhint": "^0.3.1",
-    "gulp-sass-lint": "^1.3.2",
-    "gulp-git-staged": "^0.0.1",
+    "htmlhint": "^0.9.13",
     "gulp-git": "^2.0.1",
     "lost": "^7.1.0",
-    "postcss-csso": "^2.0.0",
-    "gulp-git-staged": "^0.0.1",<% if (prettify) { %>
-    "gulp-prettier": "^1.1.0",<% } %>
+    "postcss-csso": "^2.0.0",<% if (prettify) { %>
+    "prettier": "^1.5.3",<% } %>
     "gulp-postcss": "^6.2.0",<% if (css === 'postcss') { %>
     "gulp-sass-to-postcss-mixins": "0.0.3",
     "postcss": "^5.2.4",
@@ -56,7 +63,7 @@
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
-    "require-dir": "^0.3.0",
+    "require-dir": "^0.3.2",
     "gulp-consolidate": "^0.2.0",
     "gulp-include": "^2.0.3",
     "run-sequence": "^1.1.5",<% if (sprites.indexOf('iconfont') !== -1) { %>

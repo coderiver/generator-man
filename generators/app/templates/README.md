@@ -31,7 +31,6 @@ Task name          | Description
 `jade`             | compile [jade](http://jade-lang.com/) templates
 `svgo`             | optimize svg files with [svgo](https://github.com/svg/svgo)
 `iconfont`         | compile iconfonts from svg sources
-`prettier`         | compile iconfonts from svg sources
 `sprite:svg`       | create svg symbol sprites ([css-tricks](https://css-tricks.com/svg-sprites-use-better-icon-fonts/))
 `sprite:png`       | create png sprites
 `server`           | run dev-server powered by [BrowserSync](https://www.browsersync.io/)

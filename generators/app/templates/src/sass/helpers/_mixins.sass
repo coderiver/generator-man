@@ -275,3 +275,28 @@
   @if $letter-spacing != null
     letter-spacing: ($letter-spacing / 1000) + em
 
+
+=font-face($font-family,$alias, $file-path, $weight: normal, $style: normal, $asset-pipeline: false ) 
+    @font-face 
+        font-family: $font-family
+        font-weight: $weight
+        font-style: $style
+        src: url("#{$file-path}.eot")
+        src: local("#{$font-family} #{$alias}"), local('#{$font-family}-#{$alias}'),
+        url("#{$file-path}.eot?#iefix") format('embedded-opentype'),
+        url("#{$file-path}.woff") format('woff2'),
+        url("#{$file-path}.woff") format('woff'),
+        url("#{$file-path}.ttf") format('truetype')
+
+
+=center($axis)
+  @if $axis == both
+    +center
+  @else if $axis == h
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+  @else if $axis == v
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)

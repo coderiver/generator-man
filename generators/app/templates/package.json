@@ -56,7 +56,7 @@
     "postcss-property-lookup": "^1.2.1",
     "gulp-stylelint": "^3.3.0",<% } %>
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.1.1",
+    "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
     "require-dir": "^0.3.2",

@@ -15,6 +15,7 @@ function createConfig(env) {
   isProduction = env === 'production';
 
   webpackConfig = {
+    mode: isProduction?'production':'development',
     context: path.join(__dirname, config.src.js),
     entry: {
       // vendor: ['jquery'],

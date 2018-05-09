@@ -1,39 +1,53 @@
 'use strict';
 
-var yeoman = require('yeoman-generator');
+var Generator = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 
 var prompts = require('./prompts');
 var writeFiles = require('./writing');
 
-module.exports = yeoman.generators.Base.extend({
-  prompting: function () {
-    var done = this.async();
+module.exports = class extends Generator {
+  constructor(args, opts) {
+      // Calling the super constructor is important so our generator is correctly set up
+      super(args, opts);
+
+      // Next, add your custom code
+      this.option('babel'); // This method adds support for a `--babel` flag
+  }
+  prompting() {
+    // var done = this.async();
 
     this.log(yosay(
       'Welcome to the first-rate ' + chalk.red('generator-man') + ' generator!'
     ));
 
-    this.prompt(prompts, function (props) {
+    // return this.prompt(prompts, function (props) {
+    //   this.props = props;
+    //   // done();
+    // }.bind(this));
+
+    return this.prompt(prompts).then((props)=>{
       this.props = props;
-      done();
-    }.bind(this));
-  },
+    })
+  }
 
-  writing: function () {
+  writing () {
+
+    console.log(writeFiles,'WRITE');
     writeFiles.call(this);
-  },
+    // writeFiles();
+  }
 
-  install: function () {
+  install () {
     if (this.props.install) {
       this.installDependencies();
     } else {
       this.log('Run ' + chalk.blue('npm install') + ' to install dependencies later');
     }
-  },
+  }
 
-  end: function () {
+  end () {
     if (this.props.sprites.indexOf('svg') > -1) {
       this.log(
         '\n'
@@ -47,4 +61,4 @@ module.exports = yeoman.generators.Base.extend({
     }
     this.log(chalk.green('Done!'));
   }
-});
+};

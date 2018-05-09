@@ -5,6 +5,8 @@ var path = require('path');
 var mkdirp = require('mkdirp');
 
 module.exports = function () {
+
+
   var props = this.props;
   var destPath = this.destinationPath();
 
@@ -19,138 +21,149 @@ module.exports = function () {
   mkdirp(path.join(destPath, 'src/img'));
 
   // dotfiles
-  this.copy('gitignore', '.gitignore');
-  this.copy('editorconfig', '.editorconfig');
-  this.copy('eslintrc', '.eslintrc');
-  this.copy('htmlhintrc', '.htmlhintrc');
-  this.copy('sass-lint.yml', '.sass-lint.yml');
-  this.copy('stylelintrc', '.stylelintrc');
-  this.copy('gulpfile.js');
-  this.copy('README.md');
-  this.template('package.json', props);
+  this.fs.copy(this.templatePath('gitignore'), '.gitignore');
+  this.fs.copy(this.templatePath('editorconfig'), '.editorconfig');
+  this.fs.copy(this.templatePath('eslintrc'), '.eslintrc');
+  this.fs.copy(this.templatePath('htmlhintrc'), '.htmlhintrc');
+  this.fs.copy(this.templatePath('sass-lint.yml'), '.sass-lint.yml');
+  this.fs.copy(this.templatePath('stylelintrc'), '.stylelintrc');
+  this.fs.copy(this.templatePath('gulpfile.js'), 'gulpfile.js');
+  this.fs.copy(this.templatePath('README.md'),'README.md');
+  this.fs.copyTpl(this.templatePath('package.json'),'package.json', props);
 
   // gulp configs
-  this.copy('gulp/config.js');
-  this.bulkDirectory('gulp/util', 'gulp/util');
+  this.fs.copy(this.templatePath('gulp/config.js'),'gulp/config.js');
+  this.fs.copy(this.templatePath('gulp/util/handle-errors.js'),'gulp/util/handle-errors.js');
   
   // common tasks
-  this.template('gulp/tasks/default.js');
-  this.template('gulp/tasks/build.js', props);
+  this.fs.copyTpl(this.templatePath('gulp/tasks/default.js'),'gulp/tasks/default.js');
+  this.fs.copyTpl(this.templatePath('gulp/tasks/build.js'),'gulp/tasks/build.js', props);
   
-  this.template('gulp/tasks/watch.js', props);
-  this.template('gulp/tasks/copy.js', props);
-  this.copy('gulp/tasks/clean.js');
-  this.copy('gulp/tasks/server.js');
-  this.bulkDirectory('gulp/tasks/index', 'gulp/tasks/index');
+  this.fs.copyTpl(this.templatePath('gulp/tasks/watch.js'),'gulp/tasks/watch.js', props);
+  this.fs.copyTpl(this.templatePath('gulp/tasks/copy.js'),'gulp/tasks/copy.js', props);
+ 
+  this.fs.copy(this.templatePath('gulp/tasks/clean.js'),'gulp/tasks/clean.js');
+  this.fs.copy(this.templatePath('gulp/tasks/server.js'),'gulp/tasks/server.js');
+  
+  this.fs.copy(this.templatePath('gulp/tasks/index/index.html'),'gulp/tasks/index/index.html');
+  this.fs.copy(this.templatePath('gulp/tasks/index/index-page.js'),'gulp/tasks/index/index-page.js');
+
 
   this.sprites = props.sprites; // or in /templates/src/sass/app.sass use options.sprites
   // compile templates tasks
   switch (props.templates) {
     case 'nunjucks':
-      this.copy('gulp/tasks/nunjucks.js');
+      this.fs.copy(this.templatePath('gulp/tasks/nunjucks.js'),'gulp/tasks/nunjucks.js');
       break;
     case 'swig':
-      this.copy('gulp/tasks/swig.js');
+      this.fs.copy(this.templatePath('gulp/tasks/swig.js'),'gulp/tasks/swig.js');
       break;
     case 'jade':
-      this.copy('gulp/tasks/jade.js');
+      this.fs.copy(this.templatePath('gulp/tasks/jade.js'),'gulp/tasks/jade.js');
       break;
   }
 
   switch (props.css) {
     case 'sass':
-      this.copy('gulp/tasks/sass.js');
+      this.fs.copy(this.templatePath('gulp/tasks/sass.js'),'gulp/tasks/sass.js');
       break;
     case 'postcss':
-      this.copy('gulp/tasks/postcss.js');
+      this.fs.copy(this.templatePath('gulp/tasks/postcss.js'),'gulp/tasks/postcss.js');
       break;
   }
 
   // image optimization task
   if (props.imagemin) {
-    this.copy('gulp/tasks/imagemin.js');
+    this.fs.copy(this.templatePath('gulp/tasks/imagemin.js'),'gulp/tasks/imagemin.js');
   }
 
   if (props.svgo) {
-    this.copy('gulp/tasks/svgo.js');
-    this.directory('src/img/svgo', 'src/img/svgo');
+    this.fs.copy(this.templatePath('gulp/tasks/svgo.js'),'gulp/tasks/svgo.js');
+    this.fs.copy(this.templatePath('src/img/svgo/facebook.svg'),'src/img/svgo/facebook.svg');
+    this.fs.copy(this.templatePath('src/img/svgo'), 'src/img/svgo');
   }
 
   if (props.sprites.length) {
-    this.directory('src/icons', 'src/icons');
+    this.fs.copy(this.templatePath('src/icons/facebook.png'), 'src/icons/facebook.png');
+    this.fs.copy(this.templatePath('src/icons/facebook.svg'), 'src/icons/facebook.svg');
+    this.fs.copy(this.templatePath('src/icons/facebook@2x.png'), 'src/icons/facebook@2x.png');
   }
 
   // iconfont task
-  // if (props.sprites.indexOf('iconfont') !== -1) {
-  //   this.bulkDirectory('gulp/tasks/iconfont', 'gulp/tasks/iconfont');
-  // }
   if (props.sprites.indexOf('iconfont') !== -1) {
-    this.template('gulp/tasks/iconfont/iconfont.js',props);
+    this.bulkDirectory('gulp/tasks/iconfont', 'gulp/tasks/iconfont');
+  }
+  if (props.sprites.indexOf('iconfont') !== -1) {
+    this.fs.copyTpl(this.templatePath('gulp/tasks/iconfont/iconfont.js'),'gulp/tasks/iconfont/iconfont.js',props);
 
     switch (props.css) {
       case 'sass':
-        this.bulkCopy('gulp/tasks/iconfont/_iconfont.scss','gulp/tasks/iconfont/_iconfont.scss');
+        this.fs.copy(this.templatePath('gulp/tasks/iconfont/_iconfont.scss'),'gulp/tasks/iconfont/_iconfont.scss');
         break;
       case 'postcss':
-        this.bulkCopy('gulp/tasks/iconfont/_iconfont.sss','gulp/tasks/iconfont/_iconfont.sss');
+        this.fs.copy(this.templatePath('gulp/tasks/iconfont/_iconfont.sss'),'gulp/tasks/iconfont/_iconfont.sss');
         break;
     }
   }
 
   // svg sprites task
   if (props.sprites.indexOf('svg') !== -1) {
-    this.template('gulp/tasks/sprite-svg/sprite-svg.js',props);
+    this.fs.copyTpl(this.templatePath('gulp/tasks/sprite-svg/sprite-svg.js'),'gulp/tasks/sprite-svg/sprite-svg.js',props);
 
     switch (props.css) {
       case 'sass':
-        this.bulkCopy('gulp/tasks/sprite-svg/_sprite-svg.scss','gulp/tasks/sprite-svg/_sprite-svg.scss');
+        this.fs.copy(this.templatePath('gulp/tasks/sprite-svg/_sprite-svg.scss'),'gulp/tasks/sprite-svg/_sprite-svg.scss');
         break;
       case 'postcss':
-        this.bulkCopy('gulp/tasks/sprite-svg/_sprite-svg.sss','gulp/tasks/sprite-svg/_sprite-svg.sss');
+        this.fs.copy(this.templatePath('gulp/tasks/sprite-svg/_sprite-svg.sss'),'gulp/tasks/sprite-svg/_sprite-svg.sss');
         break;
     }
   }
 
   // png sprites task
   if (props.sprites.indexOf('png') !== -1) {
-    this.template('gulp/tasks/sprite-png/sprite-png.js',props);
+    this.fs.copyTpl(this.templatePath('gulp/tasks/sprite-png/sprite-png.js'),'gulp/tasks/sprite-png/sprite-png.js',props);
 
     switch (props.css) {
       case 'sass':
-        this.template('gulp/tasks/sprite-png/sprite.template.mustache',props);
+        this.fs.copyTpl(this.templatePath('gulp/tasks/sprite-png/sprite.template.mustache'),'gulp/tasks/sprite-png/sprite.template.mustache',props);
         break;
       case 'postcss':
-        this.template('gulp/tasks/sprite-png/sprite.sss.template.mustache',props);
+        this.fs.copyTpl(this.templatePath('gulp/tasks/sprite-png/sprite.sss.template.mustache'),'gulp/tasks/sprite-png/sprite.sss.template.mustache',props);
         break;
     }
   }
 
 
-  this.template('src/index.yaml', props);
+  this.fs.copyTpl(this.templatePath('src/index.yaml'),'src/index.yaml', props);
   
   // copy directories
   if (props.bundler === 'webpack') {
-    this.copy('src/js/app-webpack.js', 'src/js/app.js');
+    this.fs.copy(this.templatePath('src/js/app-webpack.js'), 'src/js/app.js');
   } else {
-    this.bulkCopy('src/js/app.js', 'src/js/app.js');
-    this.directory('src/js/lib/', 'src/js/lib/');
+    this.fs.copy(this.templatePath('src/js/app.js'), 'src/js/app.js');
+    this.fs.copy(this.templatePath('src/js/lib'), 'src/js/lib')
+
   }
 
   if (props.bundler === 'webpack') {
-    this.bulkCopy('gulp/tasks/webpack.js', 'gulp/tasks/webpack.js');
-    this.bulkCopy('src/js/lib/sayHello-webpack.js', 'src/js/lib/sayHello.js');
-    this.copy('webpack.config.js');
+    this.fs.copy(this.templatePath('gulp/tasks/webpack.js'), 'gulp/tasks/webpack.js');
+    this.fs.copy(this.templatePath('src/js/lib/sayHello-webpack.js'), 'src/js/lib/sayHello.js');
+    this.fs.copy(this.templatePath('webpack.config.js'),'webpack.config.js');
   }
   else{
-    this.bulkCopy('gulp/tasks/js.js', 'gulp/tasks/js.js');
-    this.bulkCopy('src/js/lib/sayHello.js', 'src/js/lib/sayHello.js');
+    this.fs.copy(this.templatePath('gulp/tasks/js.js'), 'gulp/tasks/js.js');
+    this.fs.copy(this.templatePath('src/js/lib/sayHello.js'), 'src/js/lib/sayHello.js');
   }
-  this.copy('babelrc', '.babelrc');
+  this.fs.copy(this.templatePath('babelrc'), '.babelrc');
 
   if (props.css === 'sass') {
-    this.directory('src/sass', 'src/sass');
+    // this.directory('src/sass', 'src/sass');
+    this.fs.copy(this.templatePath('src/sass'), 'src/sass');
+    this.fs.copyTpl(this.templatePath('src/sass/app.sass'), 'src/sass/app.sass',props);
   } else{
-    this.directory('src/postcss', 'src/sass');
+    this.fs.copy(this.templatePath('src/postcss'), 'src/sass');
+    this.fs.copyTpl(this.templatePath('src/sass/app.sss'), 'src/sass/app.sss',props);
   }
 
   
@@ -161,16 +174,16 @@ module.exports = function () {
 
   switch (props.templates) {
     case 'nunjucks':
-      this.directory('src/templates-nunjucks', 'src/templates');
+      this.fs.copy(this.templatePath('src/templates-nunjucks'), 'src/templates');
       break;
     case 'swig':
-      this.directory('src/templates-swig', 'src/templates');
+      this.fs.copy(this.templatePath('src/templates-swig'), 'src/templates');
       break;
     case 'jade':
-      this.directory('src/templates-jade', 'src/templates');
+      this.fs.copy(this.templatePath('src/templates-jade'), 'src/templates');
       break;
     case 'html':
-      this.directory('src/templates-html', 'src');
+      this.fs.copy(this.templatePath('src/templates-html'), 'src');
       break;
   }
 };

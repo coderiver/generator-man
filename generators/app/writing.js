@@ -92,8 +92,8 @@ module.exports = function () {
   // iconfont task
 
   if (props.sprites.indexOf('iconfont') !== -1) {
-    this.fs.copyTpl(this.templatePath('gulp/tasks/iconfont/iconfont.js'),'gulp/tasks/iconfont/iconfont.js',props);
-    this.fs.copyTpl(this.templatePath('gulp/tasks/iconfont/iconfont.html'),'gulp/tasks/iconfont/iconfont.html',props);
+    this.fs.copy(this.templatePath('gulp/tasks/iconfont/iconfont.js'),'gulp/tasks/iconfont/iconfont.js');
+    this.fs.copy(this.templatePath('gulp/tasks/iconfont/iconfont.html'),'gulp/tasks/iconfont/iconfont.html');
 
     switch (props.css) {
       case 'sass':

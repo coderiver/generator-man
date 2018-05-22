@@ -90,9 +90,7 @@ module.exports = function () {
   }
 
   // iconfont task
-  if (props.sprites.indexOf('iconfont') !== -1) {
-    this.bulkDirectory('gulp/tasks/iconfont', 'gulp/tasks/iconfont');
-  }
+
   if (props.sprites.indexOf('iconfont') !== -1) {
     this.fs.copyTpl(this.templatePath('gulp/tasks/iconfont/iconfont.js'),'gulp/tasks/iconfont/iconfont.js',props);
     this.fs.copyTpl(this.templatePath('gulp/tasks/iconfont/iconfont.html'),'gulp/tasks/iconfont/iconfont.html',props);

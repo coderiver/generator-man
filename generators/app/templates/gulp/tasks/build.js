@@ -11,7 +11,8 @@ function build(cb) {
         'svgo',<% } %><% if (css === 'sass') { %>
         'sass',<% } %><% if (css === 'postcss') { %>
         'sss',<% } %><% if (templates === 'swig') { %>
-        'swig',<% } %><% if (templates === 'jade') { %>
+        'swig',<% } %><% if (templates === 'pug') { %>
+        'pug',<% } %><% if (templates === 'jade') { %>
         'jade',<% } %><% if (templates === 'nunjucks') { %>
         'nunjucks',<% } %><% if (bundler === 'browserify') { %>
         'browserify',<% } %><% if (bundler === 'webpack') { %>

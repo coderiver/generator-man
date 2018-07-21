@@ -61,6 +61,9 @@ module.exports = function () {
     case 'jade':
       this.fs.copy(this.templatePath('gulp/tasks/jade.js'),'gulp/tasks/jade.js');
       break;
+    case 'pug':
+      this.fs.copy(this.templatePath('gulp/tasks/pug.js'),'gulp/tasks/pug.js');
+      break;
   }
 
   switch (props.css) {
@@ -182,6 +185,9 @@ module.exports = function () {
       break;
     case 'jade':
       this.fs.copy(this.templatePath('src/templates-jade'), 'src/templates');
+      break;
+    case 'pug':
+      this.fs.copy(this.templatePath('src/templates-pug'), 'src/templates');
       break;
     case 'html':
       this.fs.copy(this.templatePath('src/templates-html'), 'src');

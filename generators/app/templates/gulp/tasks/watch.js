@@ -2,9 +2,9 @@ var gulp   = require('gulp');
 var config = require('../config');
 
 gulp.task('watch', 
-    ['copy:watch',
-    <% if (templates === 'swig') { %>
-    'swig:watch',<% } %><% if (templates === 'jade') { %>
+    ['copy:watch',<% if (templates === 'swig') { %>
+    'swig:watch',<% } %><% if (templates === 'pug') { %>
+    'pug:watch',<% } %><% if (templates === 'jade') { %>
     'jade:watch',<% } %><% if (templates === 'nunjucks') { %>
     'nunjucks:watch',<% } %><% if (sprites.indexOf('iconfont') !== -1) { %>
     'iconfont:watch',<% } %><% if (sprites.indexOf('svg') !== -1) { %>

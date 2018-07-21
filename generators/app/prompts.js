@@ -25,6 +25,10 @@ module.exports = [
         value: 'jade'
       },
       {
+        name: 'Pug',
+        value: 'pug'
+      },
+      {
         name: 'No templates, just pure html',
         value: 'html'
       }

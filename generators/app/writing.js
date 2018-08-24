@@ -32,14 +32,23 @@ module.exports = function () {
   this.fs.copyTpl(this.templatePath('package.json'),'package.json', props);
 
   // gulp configs
-  this.fs.copy(this.templatePath('gulp/config.js'),'gulp/config.js');
+  if(props.templates !=='wp'){
+
+    this.fs.copy(this.templatePath('gulp/config.js'),'gulp/config.js');
+  } else {
+    this.fs.copyTpl(this.templatePath('gulp/config-wp.js'),'gulp/config.js', props);
+  }
   this.fs.copy(this.templatePath('gulp/util/handle-errors.js'),'gulp/util/handle-errors.js');
   
   // common tasks
   this.fs.copyTpl(this.templatePath('gulp/tasks/default.js'),'gulp/tasks/default.js');
   this.fs.copyTpl(this.templatePath('gulp/tasks/build.js'),'gulp/tasks/build.js', props);
-  
   this.fs.copyTpl(this.templatePath('gulp/tasks/watch.js'),'gulp/tasks/watch.js', props);
+  if(props.templates !=='wp'){
+    this.fs.copyTpl(this.templatePath('gulp/tasks/copy.js'),'gulp/tasks/copy.js', props);
+  } else {
+    this.fs.copyTpl(this.templatePath('gulp/tasks/copy-wp.js'),'gulp/tasks/copy.js', props);
+  }
   this.fs.copyTpl(this.templatePath('gulp/tasks/copy.js'),'gulp/tasks/copy.js', props);
  
   this.fs.copy(this.templatePath('gulp/tasks/clean.js'),'gulp/tasks/clean.js');
@@ -54,6 +63,11 @@ module.exports = function () {
   switch (props.templates) {
     case 'nunjucks':
       this.fs.copy(this.templatePath('gulp/tasks/nunjucks.js'),'gulp/tasks/nunjucks.js');
+      break;
+    case 'wp':
+      this.fs.copy(this.templatePath('gulp/tasks/nunjucks.js'),'gulp/tasks/nunjucks.js');
+      this.fs.copy(this.templatePath('gulp/tasks/deploy.js'),'gulp/tasks/deploy.js');
+      this.fs.copy(this.templatePath('gulp/tasks/dumpDataBase.js'),'gulp/tasks/dumpDataBase.js');
       break;
     case 'swig':
       this.fs.copy(this.templatePath('gulp/tasks/swig.js'),'gulp/tasks/swig.js');
@@ -144,7 +158,7 @@ module.exports = function () {
     this.fs.copy(this.templatePath('src/js/app-webpack.js'), 'src/js/app.js');
   } else {
     this.fs.copy(this.templatePath('src/js/app.js'), 'src/js/app.js');
-    this.fs.copy(this.templatePath('src/js/lib'), 'src/js/lib')
+    this.fs.copytpl(this.templatePath('src/js/lib'), 'src/js/lib')
 
   }
 
@@ -152,7 +166,7 @@ module.exports = function () {
     this.fs.copy(this.templatePath('gulp/tasks/webpack.js'), 'gulp/tasks/webpack.js');
     this.fs.copy(this.templatePath('src/js/lib/sayHello-webpack.js'), 'src/js/lib/sayHello.js');
     this.fs.copy(this.templatePath('src/js/lib/detectTouch-webpack.js'), 'src/js/lib/detectTouch.js');
-    this.fs.copy(this.templatePath('webpack.config.js'),'webpack.config.js');
+    this.fs.copyTpl(this.templatePath('webpack.config.js'),'webpack.config.js', props);
   }
   else{
     this.fs.copy(this.templatePath('gulp/tasks/js.js'), 'gulp/tasks/js.js');
@@ -179,6 +193,9 @@ module.exports = function () {
   switch (props.templates) {
     case 'nunjucks':
       this.fs.copy(this.templatePath('src/templates-nunjucks'), 'src/templates');
+    case 'wp':
+      this.fs.copy(this.templatePath('src/templates-nunjucks'), 'src/templates');
+      this.fs.copy(this.templatePath('src/templates-wp'), 'src/wp');
       break;
     case 'swig':
       this.fs.copy(this.templatePath('src/templates-swig'), 'src/templates');

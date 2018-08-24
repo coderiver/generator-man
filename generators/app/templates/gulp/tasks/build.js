@@ -14,7 +14,9 @@ function build(cb) {
         'swig',<% } %><% if (templates === 'pug') { %>
         'pug',<% } %><% if (templates === 'jade') { %>
         'jade',<% } %><% if (templates === 'nunjucks') { %>
-        'nunjucks',<% } %><% if (bundler === 'browserify') { %>
+        'nunjucks',<% } %><% if (templates === 'wp') { %>
+        'nunjucks', 'dumpDatabase',
+        //'deploy',<% } %><% if (bundler === 'browserify') { %>
         'browserify',<% } %><% if (bundler === 'webpack') { %>
         'webpack',<% } %><% if (bundler === 'manually') { %>
         'js',<% } %>

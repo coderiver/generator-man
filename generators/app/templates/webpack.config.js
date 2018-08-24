@@ -20,6 +20,8 @@ function createConfig(env) {
     entry: {
       // vendor: ['jquery'],
       app: './app.js',
+     <% if (templates === 'wp') { %>'../../../<%= _.kebabCase(name) %>.loc/wp-content/themes/<%= _.kebabCase(name) %>/js/app': './app.js' <% } %>
+      
     },
     output: {
       path: path.join(__dirname, config.dest.js),

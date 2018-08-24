@@ -17,6 +17,11 @@ module.exports = [
         value: 'nunjucks'
       },
       {
+        name: 'Nunjucks+Wordpress',
+        value: 'wp'
+      },
+      
+      {
         name: 'Swig',
         value: 'swig'
       },

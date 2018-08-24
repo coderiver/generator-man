@@ -1,0 +1,68 @@
+/*
+Theme Name: Coderiver theme
+Author: Coderiver team
+Author URI: bilyy@coderiver.com.ua
+Description: Custom wordpress theme 
+Version: 1.0
+*/
+
+   
+.alignleft {
+    float: left;
+    margin: 0.375em 1.75em 1.75em 0;
+ }
+ 
+ .alignright {
+    float: right;
+    margin: 0.375em 0 1.75em 1.75em;
+ }
+ 
+ .aligncenter {
+    clear: both;
+    display: block;
+    margin: 0 auto 1.75em;
+ }
+ 
+ blockquote.alignleft {
+    margin: 0.3157894737em 1.4736842105em 1.473684211em 0;
+ }
+ 
+ blockquote.alignright {
+    margin: 0.3157894737em 0 1.473684211em 1.4736842105em;
+ }
+ 
+ blockquote.aligncenter {
+    margin-bottom: 1.473684211em;
+ }
+ 
+ 
+ 
+ 
+ 
+ /**
+ * - Captions
+ */
+ 
+ .wp-caption {
+    margin-bottom: 1.75em;
+    max-width: 100%;
+ }
+ 
+ .wp-caption img[class*="wp-image-"] {
+    display: block;
+    margin: 0;
+ }
+ 
+ .wp-caption .wp-caption-text {
+    color: #686868;
+    font-size: 13px;
+    font-size: 0.8125rem;
+    font-style: italic;
+    line-height: 1.6153846154;
+    padding-top: 0.5384615385em;
+ }
+ 
+ .hidden{
+    display: none;
+    visibility: hidden;
+ }

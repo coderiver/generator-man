@@ -11,6 +11,13 @@ var config      = require('../../config');
 gulp.task('sprite:svg', function() {
     return gulp
         .src(config.src.iconsSvg + '/*.svg')
+        .pipe(cheerio(function ($, file) {
+            if(!$('svg').attr('viewBox')){
+                var w = $('svg').attr('width').replace(/\D/g,'');
+                var h = $('svg').attr('height').replace(/\D/g,'');
+                $('svg').attr('viewBox', '0 0 ' + w + ' ' + h);
+            } 
+        }))
         .pipe(plumber({
             errorHandler: config.errorHandler
         }))

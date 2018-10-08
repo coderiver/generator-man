@@ -93,7 +93,8 @@
     "gulp-babel": "^6.1.2",<% } %><% if (bundler === 'webpack') { %>
     "webpack": "^4.6.0",
     "webpack-bundle-analyzer": "^2.11.1",
-    "webpack-glsl-loader": "^1.0.1",
+    "glslify-loader": "^1.0.2",
+    "raw-loader": "^0.5.1",
     "babel-runtime": "^5.0.0",<% } %>
     "require-yaml": "^0.0.1",
     "lodash": "^4.3.0"

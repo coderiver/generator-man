@@ -12,11 +12,20 @@ gulp.task('sprite:svg', function() {
     return gulp
         .src(config.src.iconsSvg + '/*.svg')
         .pipe(cheerio(function ($, file) {
-            if(!$('svg').attr('viewBox')){
-                var w = $('svg').attr('width').replace(/\D/g,'');
-                var h = $('svg').attr('height').replace(/\D/g,'');
-                $('svg').attr('viewBox', '0 0 ' + w + ' ' + h);
-            } 
+
+                var w,h,size;
+                if($('svg').attr('height')){
+                    w = $('svg').attr('width').replace(/\D/g,'');
+                    h = $('svg').attr('height').replace(/\D/g,'');
+                } else{
+                    size = $('svg').attr('viewbox').split(' ').splice(2);
+                    w = size[0];
+                    h = size[1];
+                    $('svg').attr('width', parseInt(w));
+                    $('svg').attr('height', parseInt(h));
+                }
+
+                $('svg').attr('viewBox', '0 0 ' + parseInt(w) + ' ' + parseInt(h));
         }))
         .pipe(plumber({
             errorHandler: config.errorHandler
@@ -52,7 +61,7 @@ gulp.task('sprite:svg', function() {
                 };
             }).get();
             this.push(file);
-            gulp.src(__dirname + '/_sprite-svg.s<% if (css === 'sass') { %>c<% } %>ss')
+            gulp.src(__dirname + '/_sprite-svg.scss')
                 .pipe(consolidate('lodash', {
                     symbols: data
                 }))

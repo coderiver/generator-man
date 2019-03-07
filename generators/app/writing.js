@@ -45,8 +45,11 @@ module.exports = function () {
   this.fs.copy(this.templatePath('gulp/tasks/clean.js'),'gulp/tasks/clean.js');
   this.fs.copy(this.templatePath('gulp/tasks/server.js'),'gulp/tasks/server.js');
   
-  this.fs.copy(this.templatePath('gulp/tasks/index/index.html'),'gulp/tasks/index/index.html');
-  this.fs.copy(this.templatePath('gulp/tasks/index/index-page.js'),'gulp/tasks/index/index-page.js');
+  if(props.preview){
+    this.fs.copy(this.templatePath('gulp/tasks/index/index.html'),'gulp/tasks/index/index.html');
+    this.fs.copy(this.templatePath('gulp/tasks/index/index-page.js'),'gulp/tasks/index/index-page.js');
+  }
+  
 
 
   this.sprites = props.sprites; // or in /templates/src/sass/app.sass use options.sprites
@@ -136,8 +139,9 @@ module.exports = function () {
     }
   }
 
-
-  this.fs.copyTpl(this.templatePath('src/index.yaml'),'src/index.yaml', props);
+  if(props.preview){
+    this.fs.copyTpl(this.templatePath('src/index.yaml'),'src/index.yaml', props);
+  }
   
   // copy directories
   if (props.bundler === 'webpack') {
@@ -179,6 +183,8 @@ module.exports = function () {
   switch (props.templates) {
     case 'nunjucks':
       this.fs.copy(this.templatePath('src/templates-nunjucks'), 'src/templates');
+      this.fs.delete('src/templates/page.html');
+      this.fs.copy(this.templatePath('src/templates-nunjucks/page.html'), 'src/templates/index.html');
       break;
     case 'swig':
       this.fs.copy(this.templatePath('src/templates-swig'), 'src/templates');

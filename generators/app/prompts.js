@@ -96,6 +96,12 @@ module.exports = [
   },
   {
     type: 'confirm',
+    name: 'preview',
+    message: 'Make preview page with all htmls',
+    default: true
+  },
+  {
+    type: 'confirm',
     name: 'install',
     message: 'Install dependencies right now?',
     default: false

@@ -1,12 +1,10 @@
-var gulp        = require('gulp');
-var runSequence = require('run-sequence');
-var config      = require('../config');
+import gulp from 'gulp';
+import runSequence from 'run-sequence';
 
-gulp.task('default', function(cb) {
-    runSequence(
-        'build:dev',
-        'watch',
-        'server',
-        cb
-    );
-});
+gulp.task('default', cb => runSequence(
+    'build:dev',
+    'watch',
+    'server',
+    cb
+	)
+);

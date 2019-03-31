@@ -16,22 +16,22 @@ module.exports = [
         name: 'Nunjucks',
         value: 'nunjucks'
       },
-      {
-        name: 'Swig',
-        value: 'swig'
-      },
-      {
-        name: 'Jade',
-        value: 'jade'
-      },
+      // {
+      //   name: 'Swig',
+      //   value: 'swig'
+      // },
+      // {
+      //   name: 'Jade',
+      //   value: 'jade'
+      // },
       {
         name: 'Pug',
         value: 'pug'
       },
-      {
-        name: 'No templates, just pure html',
-        value: 'html'
-      }
+      // {
+      //   name: 'No templates, just pure html',
+      //   value: 'html'
+      // }
     ],
     default: 0
   },
@@ -44,28 +44,28 @@ module.exports = [
         name: 'Sass + PostCSS',
         value: 'sass'
       },
-      {
-        name: 'PostCSS (with SugarSS and Stylelint)',
-        value: 'postcss'
-      }
+      // {
+      //   name: 'PostCSS (with SugarSS and Stylelint)',
+      //   value: 'postcss'
+      // }
     ],
     default: 0
   },
-  {
-    type: 'list',
-    name: 'bundler',
-    message: 'Choose js modules bundler',
-    choices: [
-      {
-        name: 'Webpack',
-        value: 'webpack'
-      },
-      {
-        name: 'I will merge files manually.',
-        value: 'manually'
-      }
-    ]
-  },
+  // {
+  //   type: 'list',
+  //   name: 'bundler',
+  //   message: 'Choose js modules bundler',
+  //   choices: [
+  //     {
+  //       name: 'Webpack',
+  //       value: 'webpack'
+  //     },
+  //     {
+  //       name: 'I will merge files manually.',
+  //       value: 'manually'
+  //     }
+  //   ]
+  // },
   {
     type: 'checkbox',
     name: 'sprites',
@@ -76,16 +76,16 @@ module.exports = [
         value: 'svg',
         checked: true
       },
-      {
-        name: 'Iconfonts',
-        value: 'iconfont',
-        checked: false
-      },
-      {
-        name: 'PNG sprites',
-        value: 'png',
-        checked: false
-      }
+      // {
+      //   name: 'Iconfonts',
+      //   value: 'iconfont',
+      //   checked: false
+      // },
+      // {
+      //   name: 'PNG sprites',
+      //   value: 'png',
+      //   checked: false
+      // }
     ]
   },
   {

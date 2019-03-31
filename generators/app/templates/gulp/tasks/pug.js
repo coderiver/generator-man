@@ -36,3 +36,22 @@ gulp.task('pug:watch', function() {
     gulp.watch([config.src.templates + '/**/_*.pug'], ['pug']);
     gulp.watch([config.src.templates + '/**/[^_]*.pug'], ['pug:changed']);
 });
+
+
+const build = gulp => gulp.parallel('pug');
+const watch = gulp => {
+  return function() {
+    gulp.watch([
+      config.src.templates + '/**/[^_]*.pug'
+    ], gulp.parallel('pug:changed'));
+
+    gulp.watch([
+      config.src.templates + '/**/_*.pug'
+    ], gulp.parallel('pug'));
+  }
+};
+
+
+
+module.exports.build = build;
+module.exports.watch = watch;

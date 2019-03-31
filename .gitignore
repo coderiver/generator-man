@@ -32,3 +32,4 @@ node_modules
 # Other
 npm-debug.log
 .idea
+generators/app/templates/gulp_old/

@@ -45,9 +45,10 @@ module.exports = function () {
   this.fs.copy(this.templatePath('gulp/tasks/clean.js'),'gulp/tasks/clean.js');
   this.fs.copy(this.templatePath('gulp/tasks/server.js'),'gulp/tasks/server.js');
   
-  this.fs.copy(this.templatePath('gulp/tasks/index/index.html'),'gulp/tasks/index/index.html');
-  this.fs.copy(this.templatePath('gulp/tasks/list-pages.js'),'gulp/tasks/list-pages.js');
-  
+  if(props.preview){
+    this.fs.copy(this.templatePath('gulp/tasks/index/index.html'),'gulp/tasks/index/index.html');
+    this.fs.copy(this.templatePath('gulp/tasks/list-pages.js'),'gulp/tasks/list-pages.js');
+  }
 
 
   this.sprites = props.sprites; // or in /templates/src/sass/app.sass use options.sprites
@@ -172,17 +173,14 @@ module.exports = function () {
     this.fs.copyTpl(this.templatePath('src/sass/app.sss'), 'src/sass/app.sss',props);
   }
 
-  
-
-
-  
-  
 
   switch (props.templates) {
     case 'nunjucks':
       this.fs.copy(this.templatePath('src/templates-nunjucks'), 'src/templates');
-      this.fs.delete('src/templates/page.html');
-      this.fs.copy(this.templatePath('src/templates-nunjucks/page.html'), 'src/templates/index.html');
+      if(!props.preview){
+        this.fs.delete('src/templates/page.html');
+        this.fs.copy(this.templatePath('src/templates-nunjucks/page.html'), 'src/templates/index.html');
+      }
       break;
     case 'swig':
       this.fs.copy(this.templatePath('src/templates-swig'), 'src/templates');

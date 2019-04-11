@@ -1,0 +1,22 @@
+---
+title: Index Page
+---
+extends layouts/_layout
+block content
+
+  // variable use example
+  h1!= title
+
+  // partial example
+  include ./partials/_example
+
+  // mixin example
+  +icon('facebook')
+
+  // variable set example
+  - let list = ['text 1', 'text 2', 'text 3'];
+
+  // loop example
+  ul  
+    for item in list
+      li= item

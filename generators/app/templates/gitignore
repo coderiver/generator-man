@@ -8,6 +8,7 @@
 *.swp
 *.zip
 *.vi
+*.map
 *~
 
 # OS or Editor folders

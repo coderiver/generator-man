@@ -1,5 +1,5 @@
 var gulp        = require('gulp');
-var jade        = require('gulp-jade');
+var pug         = require('gulp-pug');
 var plumber     = require('gulp-plumber');
 var changed     = require('gulp-changed');
 var gulpif      = require('gulp-if');
@@ -9,11 +9,11 @@ var config      = require('../config');
 
 function renderHtml(onlyChanged) {
     return gulp
-        .src([config.src.templates + '/[^_]*.jade'])
+        .src([config.src.templates + '/[^_]*.pug'])
         .pipe(plumber({ errorHandler: config.errorHandler }))
         .pipe(gulpif(onlyChanged, changed(config.dest.html, { extension: '.html' })))
         .pipe(frontMatter({ property: 'data' }))
-        .pipe(jade())
+        .pipe(pug())
         .pipe(prettify({
             indent_size: 2,
             wrap_attributes: 'auto', // 'force'
@@ -24,15 +24,34 @@ function renderHtml(onlyChanged) {
         .pipe(gulp.dest(config.dest.html));
 }
 
-gulp.task('jade', function() {
+gulp.task('pug', function() {
     return renderHtml();
 });
 
-gulp.task('jade:changed', function() {
+gulp.task('pug:changed', function() {
     return renderHtml(true);
 });
 
-gulp.task('jade:watch', function() {
-    gulp.watch([config.src.templates + '/**/_*.jade'], ['jade']);
-    gulp.watch([config.src.templates + '/**/[^_]*.jade'], ['jade:changed']);
+gulp.task('pug:watch', function() {
+    gulp.watch([config.src.templates + '/**/_*.pug'], ['pug']);
+    gulp.watch([config.src.templates + '/**/[^_]*.pug'], ['pug:changed']);
 });
+
+
+const build = gulp => gulp.parallel('pug');
+const watch = gulp => {
+  return function() {
+    gulp.watch([
+      config.src.templates + '/**/[^_]*.pug'
+    ], gulp.parallel('pug:changed'));
+
+    gulp.watch([
+      config.src.templates + '/**/_*.pug'
+    ], gulp.parallel('pug'));
+  }
+};
+
+
+
+module.exports.build = build;
+module.exports.watch = watch;

@@ -36,18 +36,18 @@ module.exports = function () {
   this.fs.copy(this.templatePath('gulp/util/handle-errors.js'),'gulp/util/handle-errors.js');
   
   // common tasks
-  this.fs.copyTpl(this.templatePath('gulp/tasks/default.js'),'gulp/tasks/default.js');
+  // this.fs.copyTpl(this.templatePath('gulp/tasks/default.js'),'gulp/tasks/default.js');
   // this.fs.copyTpl(this.templatePath('gulp/tasks/build.js'),'gulp/tasks/build.js', props);
-  
   // this.fs.copyTpl(this.templatePath('gulp/tasks/watch.js'),'gulp/tasks/watch.js', props);
+
   this.fs.copyTpl(this.templatePath('gulp/tasks/copy.js'),'gulp/tasks/copy.js', props);
- 
   this.fs.copy(this.templatePath('gulp/tasks/clean.js'),'gulp/tasks/clean.js');
   this.fs.copy(this.templatePath('gulp/tasks/server.js'),'gulp/tasks/server.js');
   
-  this.fs.copy(this.templatePath('gulp/tasks/index/index.html'),'gulp/tasks/index/index.html');
-  this.fs.copy(this.templatePath('gulp/tasks/list-pages.js'),'gulp/tasks/list-pages.js');
-  
+  if(props.preview){
+    this.fs.copy(this.templatePath('gulp/tasks/index/index.html'),'gulp/tasks/index/index.html');
+    this.fs.copy(this.templatePath('gulp/tasks/list-pages.js'),'gulp/tasks/list-pages.js');
+  }
 
 
   this.sprites = props.sprites; // or in /templates/src/sass/app.sass use options.sprites
@@ -172,26 +172,27 @@ module.exports = function () {
     this.fs.copyTpl(this.templatePath('src/sass/app.sss'), 'src/sass/app.sss',props);
   }
 
-  
-
-
-  
-  
 
   switch (props.templates) {
     case 'nunjucks':
       this.fs.copy(this.templatePath('src/templates-nunjucks'), 'src/templates');
-      this.fs.delete('src/templates/page.html');
-      this.fs.copy(this.templatePath('src/templates-nunjucks/page.html'), 'src/templates/index.html');
+      if(!props.preview){
+        this.fs.delete('src/templates/page.html');
+        this.fs.copy(this.templatePath('src/templates-nunjucks/page.html'), 'src/templates/index.html');
+      }
+      break;
+    case 'pug':
+      this.fs.copy(this.templatePath('src/templates-pug'), 'src/templates');
+      if(!props.preview){
+        this.fs.delete('src/templates/page.pug');
+        this.fs.copy(this.templatePath('src/templates-pug/page.pug'), 'src/templates/index.pug');
+      }
       break;
     case 'swig':
       this.fs.copy(this.templatePath('src/templates-swig'), 'src/templates');
       break;
     case 'jade':
       this.fs.copy(this.templatePath('src/templates-jade'), 'src/templates');
-      break;
-    case 'pug':
-      this.fs.copy(this.templatePath('src/templates-pug'), 'src/templates');
       break;
     case 'html':
       this.fs.copy(this.templatePath('src/templates-html'), 'src');

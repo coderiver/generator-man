@@ -181,14 +181,18 @@ module.exports = function () {
         this.fs.copy(this.templatePath('src/templates-nunjucks/page.html'), 'src/templates/index.html');
       }
       break;
+    case 'pug':
+      this.fs.copy(this.templatePath('src/templates-pug'), 'src/templates');
+      if(!props.preview){
+        this.fs.delete('src/templates/page.pug');
+        this.fs.copy(this.templatePath('src/templates-pug/page.pug'), 'src/templates/index.pug');
+      }
+      break;
     case 'swig':
       this.fs.copy(this.templatePath('src/templates-swig'), 'src/templates');
       break;
     case 'jade':
       this.fs.copy(this.templatePath('src/templates-jade'), 'src/templates');
-      break;
-    case 'pug':
-      this.fs.copy(this.templatePath('src/templates-pug'), 'src/templates');
       break;
     case 'html':
       this.fs.copy(this.templatePath('src/templates-html'), 'src');

@@ -36,12 +36,11 @@ module.exports = function () {
   this.fs.copy(this.templatePath('gulp/util/handle-errors.js'),'gulp/util/handle-errors.js');
   
   // common tasks
-  this.fs.copyTpl(this.templatePath('gulp/tasks/default.js'),'gulp/tasks/default.js');
+  // this.fs.copyTpl(this.templatePath('gulp/tasks/default.js'),'gulp/tasks/default.js');
   // this.fs.copyTpl(this.templatePath('gulp/tasks/build.js'),'gulp/tasks/build.js', props);
-  
   // this.fs.copyTpl(this.templatePath('gulp/tasks/watch.js'),'gulp/tasks/watch.js', props);
+
   this.fs.copyTpl(this.templatePath('gulp/tasks/copy.js'),'gulp/tasks/copy.js', props);
- 
   this.fs.copy(this.templatePath('gulp/tasks/clean.js'),'gulp/tasks/clean.js');
   this.fs.copy(this.templatePath('gulp/tasks/server.js'),'gulp/tasks/server.js');
   

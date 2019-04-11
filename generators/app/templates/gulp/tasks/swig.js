@@ -27,6 +27,7 @@ function renderHtml(onlyChanged) {
             wrap_attributes: 'auto', // 'force'
             preserve_newlines: true,
             // unformatted: [],
+            
             end_with_newline: true
         }))
         .pipe(gulp.dest(config.dest.html));

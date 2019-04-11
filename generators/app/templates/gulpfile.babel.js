@@ -4,28 +4,25 @@ import config from './gulp/config';
 const getTaskBuild = task => require('./gulp/tasks/' + task).build(gulp);
 const getTaskWatch = task => require('./gulp/tasks/' + task).watch(gulp);
 
-
-
-
-
-
 gulp.task('clean', getTaskBuild('clean'));
 gulp.task('copy', getTaskBuild('copy'));
-gulp.task('nunjucks', () => getTaskBuild('nunjucks'));
-gulp.task('sass', () => getTaskBuild('sass'));
 gulp.task('server', () => getTaskBuild('server'));
-gulp.task('svgo', () => getTaskBuild('svgo'));
+<% if (templates === 'nunjucks') { %>gulp.task('nunjucks', () => getTaskBuild('nunjucks'));<% } %>
+<% if (templates === 'pug') { %>gulp.task('pug', () => getTaskBuild('pug'));<% } %>
+<% if (css === 'sass') { %>gulp.task('sass', () => getTaskBuild('sass'));<% } %>
+<% if (sprites.indexOf('svg') !== -1) { %>gulp.task('sprite:svg', () => getTaskBuild('sprite-svg'));<% } %>
+<% if (svgo) { %>gulp.task('svgo', () => getTaskBuild('svgo'));<% } %>
+<% if (preview) { %>gulp.task('list-pages', getTaskBuild('list-pages'));<% } %>
 gulp.task('webpack', getTaskBuild('webpack'));
-gulp.task('list-pages', getTaskBuild('list-pages'));
-gulp.task('sprite:svg', () => getTaskBuild('sprite-svg'));
 
 gulp.task('copy:watch', getTaskWatch('copy'));
-gulp.task('nunjucks:watch', getTaskWatch('nunjucks'));
-gulp.task('sass:watch', getTaskWatch('sass'));
-gulp.task('svgo:watch', getTaskWatch('svgo'));
+<% if (templates === 'nunjucks') { %>gulp.task('nunjucks:watch', getTaskWatch('nunjucks'));<% } %>
+<% if (templates === 'pug') { %>gulp.task('pug:watch', () => getTaskWatch('pug'));<% } %>
+<% if (css === 'sass') { %>gulp.task('sass:watch', getTaskWatch('sass'));<% } %>
+<% if (sprites.indexOf('svg') !== -1) { %>gulp.task('sprite:svg:watch', getTaskWatch('sprite-svg'));<% } %>
+<% if (svgo) { %>gulp.task('svgo:watch', getTaskWatch('svgo'));<% } %>
+<% if (preview) { %>gulp.task('list-pages:watch', getTaskWatch('list-pages'));<% } %>
 gulp.task('webpack:watch', getTaskWatch('webpack'));
-gulp.task('list-pages:watch', getTaskWatch('list-pages'));
-gulp.task('sprite:svg:watch', getTaskWatch('sprite-svg'));
 
 const setmodeProd = done => {
   config.setEnv('production');
@@ -35,7 +32,7 @@ const setmodeProd = done => {
 
 const setmodeDev = done => {
   config.setEnv('development');
-	config.logEnv();
+  config.logEnv();
   done();
 }
 
@@ -50,9 +47,9 @@ gulp.task(
     <% if (templates === 'nunjucks') { %>'nunjucks',<% } %>
     <% if (templates === 'pug') { %>'pug',<% } %>
     'webpack',
-    'copy',
-    <% if (preview) { %>'list-pages'<% } %>
-	)
+    <% if (preview) { %>'list-pages',<% } %>
+    'copy'
+  )
 );
 
 gulp.task(

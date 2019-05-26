@@ -11,6 +11,7 @@
   "extends": ["airbnb-base", "prettier"],
   "rules": {
     "dollar-sign/dollar-sign": [2, "ignoreProperties"],
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-unused-vars": 1
   }
 }

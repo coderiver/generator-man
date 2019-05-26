@@ -24,6 +24,7 @@ module.exports = function () {
   this.fs.copy(this.templatePath('gitignore'), '.gitignore');
   this.fs.copy(this.templatePath('editorconfig'), '.editorconfig');
   this.fs.copy(this.templatePath('eslintrc'), '.eslintrc');
+  this.fs.copy(this.templatePath('eslintignore'), '.eslintignore');
   this.fs.copy(this.templatePath('htmlhintrc'), '.htmlhintrc');
   this.fs.copy(this.templatePath('sass-lint.yml'), '.sass-lint.yml');
   this.fs.copy(this.templatePath('stylelintrc'), '.stylelintrc');
